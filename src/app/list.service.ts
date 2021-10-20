@@ -9,10 +9,12 @@ export class ListService {
 
   constructor() { }
 //public mylist:any=[];
-myob:IList={ id:0,
+myob:IList={ id:12,
   name:"string name",
   creating_date:"string creat",
   lastupdate:"string update"};
+  public obj :any=[];
+  public obj2 :any=[];
   getList():Observable<IList[]>{
   /*  var x = localStorage.getItem("0");
      var s=0;
@@ -26,9 +28,9 @@ myob:IList={ id:0,
    // let text2 = localStorage.getItem("myarray");
     //if (text2!=null)
     {
-      let obj2 =[];// = JSON.parse(text2); 
-      obj2.push(this.myob);
-     const myJSON = JSON.stringify(obj2);
+     // let obj2 =[];// = JSON.parse(text2); 
+     // this.obj2.push(this.myob);
+     const myJSON = JSON.stringify(this.obj);
       localStorage.setItem("myarray", myJSON);
     }
 
@@ -38,13 +40,18 @@ myob:IList={ id:0,
    return obj;
     
   }
- setelement(newobject:any){
+ setelement(itemname:string){
+  this.myob={ id:1,
+    name:itemname,
+    creating_date:"string creat",
+    lastupdate:"string update"};
+
   let text = localStorage.getItem("myarray");
-  let obj =[];
+
   if (text!=null){
-     obj = JSON.parse(text); } 
-    obj.push(newobject);
-   const myJSON = JSON.stringify(obj);
+     this.obj = JSON.parse(text); } 
+    this.obj.push(this.myob);
+   const myJSON = JSON.stringify(this.obj);
 localStorage.setItem("testJSON", myJSON);
   
   

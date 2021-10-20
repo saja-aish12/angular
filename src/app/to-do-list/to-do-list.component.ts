@@ -22,6 +22,10 @@ export class ToDoListComponent implements OnInit {
     }
    );*/
     }
+    setelementname(itemname:string){
+      this._listService.setelement(itemname);
+ this.List=this._listService.getList();
+    }
     onselect(d:any){
  this.router.navigate([d.id],{relativeTo:this.r2});  
   }

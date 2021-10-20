@@ -44,7 +44,7 @@
     justify-content: center;
     width: 50%;}
   .fakeimg {
-      
+    flex-direction: column;
       height:60VH;
       overflow-y: scroll;
     color: black;

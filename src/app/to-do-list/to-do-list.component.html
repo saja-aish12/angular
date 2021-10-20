@@ -16,21 +16,13 @@
 <br>
 
   <div class="main">
-<div class="additem"> <input class=" w3-animate-input" type="text" id="item" name="item" placeholder="Add New Item ">
-   <button >Add</button> 
+<div class="additem" > <input class=" w3-animate-input" #name placeholder="Add New Item ">
+   <button (click)="setelementname(name.value);name.value='';" >Add</button> 
 </div>
     <div class="fakeimg" > 
 <ul *ngFor="let l of List">
   <li>{{l.id}} {{l.name}}</li><br>
-  <li>{{l.id}} {{l.name}}</li><br>
-  <li>{{l.id}} {{l.name}}</li><br>
-  <li>{{l.id}} {{l.name}}</li><br>
-  <li>{{l.id}} {{l.name}}</li><br>
-  <li>{{l.id}} {{l.name}}</li><br>
-  <li>{{l.id}} {{l.name}}</li><br>
-  <li>{{l.id}} {{l.name}}</li><br>
-  <li>{{l.id}} {{l.name}}</li><br>
-  <li>{{l.id}} {{l.name}}</li><br>
+  
 
 </ul></div>
 
