@@ -31,7 +31,7 @@ myob:ITasks={
    }
   settask(get_list_id:number,itemname:string){
    this.myob={ ListId:get_list_id,
-    id:++this.taskid,
+    id:this.taskid++,
     name:itemname,
     description:"description",
     creating_date:this.date,
@@ -51,5 +51,19 @@ myob:ITasks={
    
  
   }
+
+  deletetask(delte_ob:ITasks){
+    let text = localStorage.getItem("taskarray");
+     let obj;
+    if (text!=null){ obj = JSON.parse(text); }
+    let index=this.obj.indexOf(delte_ob);
+    
+    console.log(index); 
+    this.obj.splice(index,1);
+    const myJSON = JSON.stringify(this.obj);
+    localStorage.setItem("taskarray", myJSON);
+ 
+     
+   }
 
 }

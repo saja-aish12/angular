@@ -23,8 +23,11 @@ myob:IList={ id:12,
    return obj;
     
   }
- setList(itemname:string){
-  this.myob={ id:++this.listid,
+
+  
+
+  setList(itemname:string){
+  this.myob={ id:this.listid++,
     name:itemname,
     creating_date:this.date,
     lastupdate:this.date};
@@ -41,5 +44,21 @@ localStorage.setItem("listarray", myJSON);
 
  }
 
- 
+ deletelist(delte_ob:IList){
+
+
+  let text = localStorage.getItem("listarray");
+
+  let obj;
+ if (text!=null){ obj = JSON.parse(text); }
+ let index=this.obj.indexOf(delte_ob); 
+ this.obj.splice(index,1);
+ const myJSON = JSON.stringify(this.obj);
+ localStorage.setItem("listarray", myJSON);
+  
+  
+
+ }
+
+
 }

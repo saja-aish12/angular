@@ -28,7 +28,12 @@ export class ToDoListComponent implements OnInit {
     }
     onselect(d:any){
  this.router.navigate([d.id],{relativeTo:this.r2});  
+
   }
+  delete(d:any){ 
+    this._listService.deletelist(d);
+    this.List=this._listService.getList();
+     }
     isselected(L:any){
   return L.id === this.slectedid;
     }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ITasks } from '../tasks';
 import { TasksService } from '../tasks.service';
 
 @Component({
@@ -21,6 +22,10 @@ export class TasksInsideComponent implements OnInit {
       }}
     );
    
+  }
+  delete(deleteob:ITasks){
+    this._taskService.deletetask(deleteob);
+this.task=this._taskService.gettask();
   }
   settaskname(itemname:string){
     this._taskService.settask(this.listID,itemname);
