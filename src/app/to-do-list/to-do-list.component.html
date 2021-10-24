@@ -27,7 +27,7 @@
           <th>creating date</th>
           <th>last update date</th>
        
-        <tr  *ngFor="let l of List">
+        <tr  *ngFor="let l of List" (click)="onselect(l)" [class.selected]="isselected(l)">
        
           <th>{{l.id}}</th>
           <th>{{l.name}} </th>

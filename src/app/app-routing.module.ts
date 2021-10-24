@@ -5,9 +5,8 @@ import { TasksInsideComponent } from './tasks-inside/tasks-inside.component';
 import { ToDoListComponent } from './to-do-list/to-do-list.component';
 
 const routes: Routes = [{path:'',redirectTo:'/list',pathMatch:'full'},
-{path:'list/:id',component:ToDoListComponent},
+{path:'list/:id',component:TasksInsideComponent},
 {path:'list',component:ToDoListComponent},
-{path:'tasks',component:TasksInsideComponent},
 {path:'**',component:PageNotFoundComponent}
 ];
 

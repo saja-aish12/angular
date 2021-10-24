@@ -1,1 +1,47 @@
-<p>tasks-inside works!</p>
+<!DOCTYPE html>
+<html>
+<head>
+<title>tasks</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="app.js" defer></script>   
+</head>
+<body >
+  <div class="navbar ">
+
+  </div>
+<br>
+
+  <div class="main">
+<div class="additem" > <input class=" w3-animate-input" #name placeholder="Add New Item ">
+   <button  >Add</button> 
+</div>
+    <div class="fakeimg" > 
+      <table >
+      
+          <th>id</th>
+          <th>name </th>
+          <th>creating date</th>
+          <th>last update date</th>
+       
+        <tr  *ngFor="let t of task" >
+       
+          <th>{{t.id}}</th>
+          <th>{{t.name}} </th>
+          <th>{{t.creating_date |date:'short'}}</th>
+          <th>{{t.lastupdate |date:'short'}}</th>
+        </tr>
+      </table >
+  
+  
+</div>
+
+   
+  </div>
+  <div class="footer">
+ 
+  </div>
+
+</body>
+</html>

@@ -23,7 +23,7 @@ export class ToDoListComponent implements OnInit {
    );*/
     }
     setelementname(itemname:string){
-      this._listService.setelement(itemname);
+      this._listService.setList(itemname);
  this.List=this._listService.getList();
     }
     onselect(d:any){

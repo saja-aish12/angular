@@ -15,46 +15,27 @@ myob:IList={ id:12,
   creating_date:this.date,
   lastupdate:this.date};
   public obj :any=[];
-  public obj2 :any=[];
-  
-  getList():Observable<IList[]>{
-  /*  var x = localStorage.getItem("0");
-     var s=0;
-    while (typeof x !== 'undefined' && x !== null){
-      this.mylist.add(x);
-      s++;
-       x = localStorage.getItem(s+"");
-    }
-    */
-    
-   // let text2 = localStorage.getItem("myarray");
-    //if (text2!=null)
-    {
-     // let obj2 =[];// = JSON.parse(text2); 
-     // this.obj2.push(this.myob);
-     const myJSON = JSON.stringify(this.obj);
-      localStorage.setItem("myarray", myJSON);
-    }
-
-    let text = localStorage.getItem("myarray");
+  public listid=0;
+  getList( ):Observable<IList[]>{
+   let text = localStorage.getItem("listarray");
     let obj;
    if (text!=null){ obj = JSON.parse(text); } 
    return obj;
     
   }
- setelement(itemname:string){
-  this.myob={ id:1,
+ setList(itemname:string){
+  this.myob={ id:++this.listid,
     name:itemname,
     creating_date:this.date,
     lastupdate:this.date};
 
-  let text = localStorage.getItem("myarray");
+  let text = localStorage.getItem("listarray");
 
   if (text!=null){
      this.obj = JSON.parse(text); } 
     this.obj.push(this.myob);
    const myJSON = JSON.stringify(this.obj);
-localStorage.setItem("testJSON", myJSON);
+localStorage.setItem("listarray", myJSON);
   
   
 

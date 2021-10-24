@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { TasksService } from '../tasks.service';
 
 @Component({
   selector: 'app-tasks-inside',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tasks-inside.component.css']
 })
 export class TasksInsideComponent implements OnInit {
+  public listID:any;
+  public task:any = [];
+  constructor(private _taskService:TasksService,private router :ActivatedRoute ,private r2 :Router) { }
 
-  constructor() { }
 
   ngOnInit(): void {
+    this.router.paramMap.subscribe((p:ParamMap)=>
+    {let id;
+      if((id=p.get('id'))!=null){this.listID=parseInt(id)
+        this.task=this._taskService.gettask();//this.listID
+      }}
+    );
+   
   }
 
 }
