@@ -50,7 +50,7 @@
     color: black;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 50%;
   
     background:rgb(243, 243, 89);
@@ -113,4 +113,4 @@
     border-bottom: 1px solid #ddd;
   }
   
-  tr:hover {background-color: yellow;}
+  tr:hover {background-color: rgb(115, 136, 196);}

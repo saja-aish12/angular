@@ -20,11 +20,24 @@
    <button (click)="setelementname(name.value);name.value='';" >Add</button> 
 </div>
     <div class="fakeimg" > 
-<ul *ngFor="let l of List">
-  <li>{{l.id}} {{l.name}} {{l.creating_date}}</li><br>
+      <table >
+      
+          <th>id</th>
+          <th>name </th>
+          <th>creating date</th>
+          <th>last update date</th>
+       
+        <tr  *ngFor="let l of List">
+       
+          <th>{{l.id}}</th>
+          <th>{{l.name}} </th>
+          <th>{{l.creating_date |date:'short'}}</th>
+          <th>{{l.lastupdate |date:'short'}}</th>
+        </tr>
+      </table >
   
-
-</ul></div>
+  
+</div>
 
    
   </div>
