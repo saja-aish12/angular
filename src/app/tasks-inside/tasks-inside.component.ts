@@ -23,4 +23,10 @@ export class TasksInsideComponent implements OnInit {
    
   }
 
+  back(){
+    let selectedid=this.listID?this.listID:null;
+   // this.r2.navigate(['/department',{id:selectedid}]);
+   this.r2.navigate(['../',{id:selectedid}],{relativeTo:this.router});
+  }
+
 }

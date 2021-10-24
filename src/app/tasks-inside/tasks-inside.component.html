@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="tasks-inside.component.css">
 <script src="app.js" defer></script>   
 </head>
 <body >
@@ -22,15 +23,21 @@
       
           <th>id</th>
           <th>name </th>
+          <th>description </th>
           <th>creating date</th>
           <th>last update date</th>
-       
+          <th>start_date </th>
+          <th>end_date </th>
+          <th>current_state </th>
         <tr  *ngFor="let t of task" >
-       
           <th>{{t.id}}</th>
           <th>{{t.name}} </th>
+          <th>{{t.description}} </th>
           <th>{{t.creating_date |date:'short'}}</th>
           <th>{{t.lastupdate |date:'short'}}</th>
+          <th>{{t.start_date}} </th>
+          <th>{{t.end_date}} </th>
+          <th>{{t.current_state}} </th>
         </tr>
       </table >
   
@@ -40,7 +47,7 @@
    
   </div>
   <div class="footer">
- 
+    <button (click)="back()">back</button>
   </div>
 
 </body>
