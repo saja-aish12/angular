@@ -76,6 +76,9 @@
        justify-content: center;
        align-content: center;
   }
+
+
+  /* srollbar style*/
   
   /* width */
 ::-webkit-scrollbar {
@@ -98,5 +101,16 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #b39800; 
   }
-
-
+/*table style*/
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  tr:hover {background-color: yellow;}

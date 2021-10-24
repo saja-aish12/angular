@@ -9,12 +9,14 @@ export class ListService {
 
   constructor() { }
 //public mylist:any=[];
+public date =new Date();
 myob:IList={ id:12,
   name:"string name",
-  creating_date:"string creat",
-  lastupdate:"string update"};
+  creating_date:this.date,
+  lastupdate:this.date};
   public obj :any=[];
   public obj2 :any=[];
+  
   getList():Observable<IList[]>{
   /*  var x = localStorage.getItem("0");
      var s=0;
@@ -43,8 +45,8 @@ myob:IList={ id:12,
  setelement(itemname:string){
   this.myob={ id:1,
     name:itemname,
-    creating_date:"string creat",
-    lastupdate:"string update"};
+    creating_date:this.date,
+    lastupdate:this.date};
 
   let text = localStorage.getItem("myarray");
 
