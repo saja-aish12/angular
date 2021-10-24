@@ -51,9 +51,12 @@ localStorage.setItem("listarray", myJSON);
 
   let obj;
  if (text!=null){ obj = JSON.parse(text); }
- let index=this.obj.indexOf(delte_ob); 
- this.obj.splice(index,1);
- const myJSON = JSON.stringify(this.obj);
+ let vv= this.obj.filter(myFunction);
+function myFunction(value:any) { if (value.id!=delte_ob.id){ return value;}
+  
+}
+    
+    const myJSON = JSON.stringify(vv);
  localStorage.setItem("listarray", myJSON);
   
   

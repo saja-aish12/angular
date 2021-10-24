@@ -31,7 +31,7 @@
           <th>current_state </th>
           <th> </th>
         </table >
-    <table  *ngFor="let t of task"  (click)="delete(t);" >
+    <table  *ngFor="let t of task"   >
        
             <tr *ngIf= "t.ListId === this.listID ">
                
@@ -43,7 +43,7 @@
           <th>{{t.start_date}} </th>
           <th>{{t.end_date}} </th>
           <th>{{t.current_state}} </th>
-          <th >{{t.dee}}</th>
+          <th (click)="delete(t);">delete</th>
            
         </tr> 
       </table >

@@ -51,16 +51,17 @@ myob:ITasks={
    
  
   }
-
+  
   deletetask(delte_ob:ITasks){
     let text = localStorage.getItem("taskarray");
      let obj;
     if (text!=null){ obj = JSON.parse(text); }
-    let index=this.obj.indexOf(delte_ob);
+   let vv= this.obj.filter(myFunction);
+function myFunction(value:any) { if (value.id!=delte_ob.id){ return value;}
+  
+}
     
-    console.log(index); 
-    this.obj.splice(index,1);
-    const myJSON = JSON.stringify(this.obj);
+    const myJSON = JSON.stringify(vv);
     localStorage.setItem("taskarray", myJSON);
  
      

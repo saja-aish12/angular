@@ -33,6 +33,7 @@
           <th>{{l.name}} </th>
           <th>{{l.creating_date |date:'short'}}</th>
           <th>{{l.lastupdate |date:'short'}}</th>
+          <th (click)="delete(l);">delete</th>
         </tr>
       </table >
   
