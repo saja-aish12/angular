@@ -16,11 +16,11 @@ export class ToDoListComponent implements OnInit {
   public slectedid:any;
     ngOnInit(): void {
       this.List=this._listService.getList();
-   /*   this.r2.paramMap.subscribe((p:ParamMap)=>
+      this.r2.paramMap.subscribe((p:ParamMap)=>
    {let id;
      if((id=p.get('id'))!=null)this.slectedid=parseInt(id)
     }
-   );*/
+   );
     }
     setelementname(itemname:string){
       this._listService.setList(itemname);
@@ -29,8 +29,8 @@ export class ToDoListComponent implements OnInit {
     onselect(d:any){
  this.router.navigate([d.id],{relativeTo:this.r2});  
   }
-    isselected(department:any){
-  return department.id === this.slectedid;
+    isselected(L:any){
+  return L.id === this.slectedid;
     }
   }
 
