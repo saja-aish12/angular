@@ -22,7 +22,10 @@ export class TasksInsideComponent implements OnInit {
     );
    
   }
-
+  settaskname(itemname:string){
+    this._taskService.settask(this.listID,itemname);
+this.task=this._taskService.gettask();
+  }
   back(){
     let selectedid=this.listID?this.listID:null;
    // this.r2.navigate(['/department',{id:selectedid}]);
