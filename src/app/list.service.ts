@@ -8,15 +8,13 @@ import { IList } from './list';
 export class ListService {
 
   constructor() { }
-//public mylist:any=[];
-public date =new Date();
 myob:IList={ id:12,
   name:"string name",
-  creating_date:this.date,
-  lastupdate:this.date};
+  creating_date:new Date(),
+  lastupdate:new Date()};
   public obj :any=[];
   public listid=0;
-  getList( ):Observable<IList[]>{
+  getList( ):IList[]{
    let text = localStorage.getItem("listarray");
     let obj;
    if (text!=null){ obj = JSON.parse(text); } 
@@ -26,11 +24,11 @@ myob:IList={ id:12,
 
   
 
-  setList(itemname:string){
+  addList(itemname:string){
   this.myob={ id:this.listid++,
     name:itemname,
-    creating_date:this.date,
-    lastupdate:this.date};
+    creating_date:new Date(),
+    lastupdate:new Date()};
 
   let text = localStorage.getItem("listarray");
 
@@ -44,19 +42,16 @@ localStorage.setItem("listarray", myJSON);
 
  }
 
- deletelist(delte_ob:IList){
+ deleteList(list:IList){
 
 
   let text = localStorage.getItem("listarray");
 
-  let obj;
- if (text!=null){ obj = JSON.parse(text); }
- let vv= this.obj.filter(myFunction);
-function myFunction(value:any) { if (value.id!=delte_ob.id){ return value;}
-  
-}
-    
-    const myJSON = JSON.stringify(vv);
+ if (text!=null){ this.obj = JSON.parse(text); }
+ 
+ let equaledList= this.obj.filter((value: IList) => value.id !== list.id);
+ this.obj=equaledList;
+    const myJSON = JSON.stringify(equaledList);
  localStorage.setItem("listarray", myJSON);
   
   

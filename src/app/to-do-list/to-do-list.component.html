@@ -17,7 +17,7 @@
 
   <div class="main">
 <div class="additem" > <input class=" w3-animate-input" #name placeholder="Add New Item ">
-   <button (click)="setelementname(name.value);name.value='';" >Add</button> 
+   <button (click)="addElementname(name.value);name.value='';" >Add</button> 
 </div>
     <div class="fakeimg" > 
       <table >
@@ -27,13 +27,13 @@
           <th>creating date</th>
           <th>last update date</th>
        
-        <tr  *ngFor="let l of List" (click)="onselect(l)" [class.selected]="isselected(l)">
+        <tr  *ngFor="let l of list"  [class.selected]="isSelected(l)">
        
           <th>{{l.id}}</th>
-          <th>{{l.name}} </th>
+          <th ><button (click)="onSelect(l)">{{l.name}} </button></th>
           <th>{{l.creating_date |date:'short'}}</th>
           <th>{{l.lastupdate |date:'short'}}</th>
-          <th (click)="delete(l);">delete</th>
+          <th ><button (click)="delete(l);">Delete</button></th>
         </tr>
       </table >
   

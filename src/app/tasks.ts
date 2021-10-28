@@ -7,5 +7,5 @@ export interface ITasks{
     lastupdate:Date,
     start_date:Date,
     end_date:Date,
-    current_state:number
+    current_state:String
 }

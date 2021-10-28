@@ -8,7 +8,6 @@ import { ITasks } from './tasks';
 export class TasksService {
 
   constructor() { }
-  public date =new Date();
   public taskid=0;
 public obj :any=[];
 myob:ITasks={  
@@ -16,29 +15,29 @@ myob:ITasks={
   id:0,
   name:"string",
   description:"String",
-  creating_date:this.date,
-  lastupdate:this.date,
-  start_date:this.date,
-  end_date:this.date,
-  current_state:0};
+  creating_date:new Date(),
+  lastupdate:new Date(),
+  start_date:new Date(),
+  end_date:new Date(),
+  current_state:"NOT Start"};
 
-  gettask():Observable<ITasks[]>{
+  getTask():ITasks[]{
     let text = localStorage.getItem("taskarray");
      let obj;
     if (text!=null){ obj = JSON.parse(text); } 
     return obj;
      
    }
-  settask(get_list_id:number,itemname:string){
+  addTask(get_list_id:number,itemname:string){
    this.myob={ ListId:get_list_id,
     id:this.taskid++,
     name:itemname,
     description:"description",
-    creating_date:this.date,
-    lastupdate:this.date,
-    start_date:this.date,
-    end_date:this.date,
-    current_state:0};
+    creating_date:new Date(),
+    lastupdate:new Date(),
+    start_date:new Date(),
+    end_date:new Date(),
+    current_state:"NOT Start"};
  
    let text = localStorage.getItem("taskarray");
  
@@ -52,16 +51,14 @@ myob:ITasks={
  
   }
   
-  deletetask(delte_ob:ITasks){
+  deleteTask(task:ITasks){
     let text = localStorage.getItem("taskarray");
-     let obj;
-    if (text!=null){ obj = JSON.parse(text); }
-   let vv= this.obj.filter(myFunction);
-function myFunction(value:any) { if (value.id!=delte_ob.id){ return value;}
-  
-}
     
-    const myJSON = JSON.stringify(vv);
+    if (text!=null){ this.obj = JSON.parse(text); }
+    let equaledList= this.obj.filter((value: ITasks) => value.id !== task.id);
+    this.obj=equaledList;
+    
+    const myJSON = JSON.stringify(equaledList);
     localStorage.setItem("taskarray", myJSON);
  
      
