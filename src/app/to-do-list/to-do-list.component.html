@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>To Do List</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="to-do-list.component.css">
-<link rel="icon" href="toDoList.png" type="image/png">
-<script src="app.js" defer></script>   
-</head>
-<body >
-  <div class="navbar ">
+  <head>
+    <title>To Do List</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="to-do-list.component.css" />
+    <link rel="icon" href="toDoList.png" type="image/png" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="navbar"></div>
+    <br />
 
-  </div>
-<br>
-
-  <div class="main">
-<div class="additem" > <input class=" w3-animate-input" #name placeholder="Add New Item ">
-   <button (click)="addElementname(name.value);name.value='';" >Add</button> 
-</div>
-    <div class="fakeimg" > 
-      <table >
-      
+    <div class="main">
+      <div class="additem">
+        <input
+          class="w3-animate-input addName"
+          #name
+          placeholder="Add New Item "
+          (keydown.enter)="addElementname(name.value); name.value = ''"
+        />
+        <button (click)="addElementname(name.value); name.value = ''">
+          Add
+        </button>
+      </div>
+      <div class="fakeimg">
+        <table>
           <th>id</th>
-          <th>name </th>
+          <th>name</th>
           <th>creating date</th>
           <th>last update date</th>
-       
-        <tr  *ngFor="let l of list"  [class.selected]="isSelected(l)">
-       
-          <th>{{l.id}}</th>
-          <th ><button (click)="onSelect(l)">{{l.name}} </button></th>
-          <th>{{l.creating_date |date:'short'}}</th>
-          <th>{{l.lastupdate |date:'short'}}</th>
-          <th ><button (click)="delete(l);">Delete</button></th>
-        </tr>
-      </table >
-  
-  
-</div>
 
-   
-  </div>
-  <div class="footer">
- 
-  </div>
-
-</body>
+          <tr *ngFor="let l of list" [class.selected]="isSelected(l)">
+            <th>{{ l.id }}</th>
+            <th><b  #newname contenteditable="true" (keydown.enter)=" rename(l,newname.innerHTML)"  >{{ l.name }}</b></th>
+            <th>{{ l.creating_date | date: "short" }}</th>
+            <th>{{ l.lastupdate | date: "short" }}</th>
+            <th>
+              <button (click)="onSelect(l)">Open</button
+              ><button (click)="delete(l)">Delete</button>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="footer"></div>
+  </body>
 </html>

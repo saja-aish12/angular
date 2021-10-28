@@ -31,12 +31,20 @@ export class TasksInsideComponent implements OnInit {
     this.task = this._taskService.getTask();
   }
   setTaskName(itemname: string) {
-    this._taskService.addTask(this.listID, itemname);
-    this.task = this._taskService.getTask();
+    if (itemname.length > 0 && itemname.trim() != '') {
+      this._taskService.addTask(this.listID, itemname);
+      this.task = this._taskService.getTask();
+    }
   }
   back() {
     let selectedid = this.listID ? this.listID : null;
     // this.r2.navigate(['/department',{id:selectedid}]);
     this.r2.navigate(['../', { id: selectedid }], { relativeTo: this.router });
+  }
+
+  rename(list: ITasks ,newName:string) {
+    
+    this._taskService.renametask(list ,newName);
+    this.task = this._taskService.getTask();
   }
 }

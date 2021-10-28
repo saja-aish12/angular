@@ -14,7 +14,7 @@
 
     <div class="main">
       <div class="additem">
-        <input class="w3-animate-input" #name placeholder="Add New Item " />
+        <input class="w3-animate-input" #name placeholder="Add New Item " (keydown.enter)="setTaskName(name.value); name.value = ''" />
         <button (click)="setTaskName(name.value); name.value = ''">Add</button>
       </div>
       <div class="fakeimg">
@@ -32,9 +32,7 @@
         <table *ngFor="let t of task">
           <tr *ngIf="t.ListId === this.listID">
             <th>{{ t.id }}</th>
-            <th>
-              <button>{{ t.name }}</button>
-            </th>
+            <th><b  #newname contenteditable="true" (keydown.enter)=" rename(t,newname.innerHTML)"  >{{ t.name }}</b></th>
             <th>{{ t.description }}</th>
             <th>{{ t.creating_date | date: "short" }}</th>
             <th>{{ t.lastupdate | date: "short" }}</th>

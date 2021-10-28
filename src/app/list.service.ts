@@ -23,26 +23,20 @@ export class ListService {
       lastupdate: new Date(),
     };
 
-    let text = localStorage.getItem('listarray');
-
-    if (text != null) {
-      this.obj = JSON.parse(text);
-    }
-    this.obj.push(newListObject);
-    const myJSON = JSON.stringify(this.obj);
-    localStorage.setItem('listarray', myJSON);
+    this._LocalStoreService.addLists(newListObject);
   }
 
   deleteList(list: IList) {
-    let text = localStorage.getItem('listarray');
+    this._LocalStoreService.deleteLists(list);
+  }
 
-    if (text != null) {
-      this.obj = JSON.parse(text);
-    }
-
-    let equaledList = this.obj.filter((value: IList) => value.id !== list.id);
-    this.obj = equaledList;
-    const myJSON = JSON.stringify(equaledList);
-    localStorage.setItem('listarray', myJSON);
+  renameList(list: IList, newName: string) {
+    let updateListName = {
+      id: list.id,
+      name: newName,
+      creating_date: list.creating_date,
+      lastupdate: new Date(),
+    };
+    this._LocalStoreService.renameList(updateListName);
   }
 }

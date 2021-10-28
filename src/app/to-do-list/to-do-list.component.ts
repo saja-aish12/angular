@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { IList } from '../list';
 import { ListService } from '../list.service';
@@ -9,6 +9,7 @@ import { ListService } from '../list.service';
   styleUrls: ['./to-do-list.component.css'],
 })
 export class ToDoListComponent implements OnInit {
+  @Input() name: string="";
   public list: IList[] = [];
 
   constructor(
@@ -25,17 +26,25 @@ export class ToDoListComponent implements OnInit {
     });
   }
   addElementname(itemname: string) {
-    this._listService.addList(itemname);
-    this.list = this._listService.getList();
+    if (itemname.length > 0 && itemname.trim() != '') {
+      this._listService.addList(itemname);
+      this.list = this._listService.getList();
+    }
   }
   onSelect(d: any) {
     this.router.navigate([d.id], { relativeTo: this.r2 });
   }
-  delete(d: any) {
-    this._listService.deleteList(d);
+  rename(list: IList ,newName:string) {
+    
+    this._listService.renameList(list ,newName);
+    this.list = this._listService.getList();
+  }
+  delete(list: IList) {
+    this._listService.deleteList(list);
     this.list = this._listService.getList();
   }
   isSelected(L: any) {
     return L.id === this.slectedid;
   }
+ 
 }
