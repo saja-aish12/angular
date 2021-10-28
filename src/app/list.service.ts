@@ -1,31 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IList } from './list';
+import { LocalStoreService } from './local-store.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListService {
 
-  constructor() { }
-myob:IList={ id:12,
-  name:"string name",
-  creating_date:new Date(),
-  lastupdate:new Date()};
+  constructor(private _LocalStoreService:LocalStoreService) { }
+
   public obj :any=[];
   public listid=0;
   getList( ):IList[]{
-   let text = localStorage.getItem("listarray");
-    let obj;
-   if (text!=null){ obj = JSON.parse(text); } 
-   return obj;
+    return this._LocalStoreService.getLists();
     
   }
 
   
 
   addList(itemname:string){
-  this.myob={ id:this.listid++,
+ let newListObject={ id:this.listid++,
     name:itemname,
     creating_date:new Date(),
     lastupdate:new Date()};
@@ -34,7 +29,7 @@ myob:IList={ id:12,
 
   if (text!=null){
      this.obj = JSON.parse(text); } 
-    this.obj.push(this.myob);
+    this.obj.push(newListObject);
    const myJSON = JSON.stringify(this.obj);
 localStorage.setItem("listarray", myJSON);
   

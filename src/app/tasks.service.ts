@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { LocalStoreService } from './local-store.service';
 import { ITasks } from './tasks';
 
 @Injectable({
@@ -7,29 +8,19 @@ import { ITasks } from './tasks';
 })
 export class TasksService {
 
-  constructor() { }
+  constructor(private _LocalStoreService:LocalStoreService) { }
   public taskid=0;
-public obj :any=[];
-myob:ITasks={  
-  ListId:0,
-  id:0,
-  name:"string",
-  description:"String",
-  creating_date:new Date(),
-  lastupdate:new Date(),
-  start_date:new Date(),
-  end_date:new Date(),
-  current_state:"NOT Start"};
+
+  public taskArray :ITasks[]=[];
+  public taskArrayName ="taskarray";
+
 
   getTask():ITasks[]{
-    let text = localStorage.getItem("taskarray");
-     let obj;
-    if (text!=null){ obj = JSON.parse(text); } 
-    return obj;
-     
+    return this._LocalStoreService.getTasks();
    }
   addTask(get_list_id:number,itemname:string){
-   this.myob={ ListId:get_list_id,
+   
+   let newTaskObject={ ListId:get_list_id,
     id:this.taskid++,
     name:itemname,
     description:"description",
@@ -39,29 +30,12 @@ myob:ITasks={
     end_date:new Date(),
     current_state:"NOT Start"};
  
-   let text = localStorage.getItem("taskarray");
- 
-   if (text!=null){
-      this.obj = JSON.parse(text); } 
-     this.obj.push(this.myob);
-    const myJSON = JSON.stringify(this.obj);
- localStorage.setItem("taskarray", myJSON);
-   
-   
- 
+    this._LocalStoreService.addTasks(newTaskObject);
+  
   }
   
   deleteTask(task:ITasks){
-    let text = localStorage.getItem("taskarray");
-    
-    if (text!=null){ this.obj = JSON.parse(text); }
-    let equaledList= this.obj.filter((value: ITasks) => value.id !== task.id);
-    this.obj=equaledList;
-    
-    const myJSON = JSON.stringify(equaledList);
-    localStorage.setItem("taskarray", myJSON);
- 
-     
+    this._LocalStoreService.deleteTasks(task);
    }
 
 }
