@@ -4,15 +4,20 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { TasksInsideComponent } from './tasks-inside/tasks-inside.component';
 import { ToDoListComponent } from './to-do-list/to-do-list.component';
 
-const routes: Routes = [{path:'',redirectTo:'/list',pathMatch:'full'},
-{path:'list/:id',component:TasksInsideComponent},
-{path:'list',component:ToDoListComponent},
-{path:'**',component:PageNotFoundComponent}
+const routes: Routes = [
+  { path: '', redirectTo: '/list', pathMatch: 'full' },
+  { path: 'list/:id', component: TasksInsideComponent },
+  { path: 'list', component: ToDoListComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-export const routinglistComponents=[ToDoListComponent,TasksInsideComponent,PageNotFoundComponent]
+export class AppRoutingModule {}
+export const routinglistComponents = [
+  ToDoListComponent,
+  TasksInsideComponent,
+  PageNotFoundComponent,
+];

@@ -15,13 +15,10 @@ import { LocalStoreService } from './local-store.service';
     AppComponent,
     ToDoListComponent,
     TasksInsideComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [TasksService,ListService,LocalStoreService],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule],
+  providers: [TasksService, ListService, LocalStoreService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
