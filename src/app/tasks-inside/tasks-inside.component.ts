@@ -42,9 +42,13 @@ export class TasksInsideComponent implements OnInit {
     this.r2.navigate(['../', { id: selectedid }], { relativeTo: this.router });
   }
 
-  rename(list: ITasks ,newName:string) {
+  rename(task: ITasks ,newName:string) {
     
-    this._taskService.renametask(list ,newName);
+    this._taskService.renameTask(task ,newName);
+    this.task = this._taskService.getTask();
+  }
+  changeDiscription(task: ITasks ,newName:string){
+    this._taskService.changeTaskDiscription(task ,newName);
     this.task = this._taskService.getTask();
   }
 }

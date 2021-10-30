@@ -49,7 +49,7 @@ export class LocalStoreService {
     const myJSON = JSON.stringify(equaledList);
     localStorage.setItem(this.listArrayName, myJSON);
   }
-  renameList(list: IList) {
+  updateList(list: IList) {
     let text = localStorage.getItem(this.listArrayName);
 
     if (text != null) {
@@ -113,7 +113,7 @@ export class LocalStoreService {
     const myJSON = JSON.stringify(equaledtask);
     localStorage.setItem(this.taskArrayName, myJSON);
   }
-  renametask(task: ITasks) {
+  updateTask(task: ITasks) {
     let text = localStorage.getItem(this.taskArrayName);
 
     if (text != null) {
@@ -127,4 +127,5 @@ export class LocalStoreService {
     const myJSON = JSON.stringify(this.taskArray);
     localStorage.setItem(this.taskArrayName, myJSON);
   }
+  
 }

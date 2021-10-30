@@ -37,6 +37,6 @@ export class ListService {
       creating_date: list.creating_date,
       lastupdate: new Date(),
     };
-    this._LocalStoreService.renameList(updateListName);
+    this._LocalStoreService.updateList(updateListName);
   }
 }

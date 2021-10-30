@@ -35,8 +35,8 @@ export class TasksService {
   deleteTask(task: ITasks) {
     this._LocalStoreService.deleteTasks(task);
   }
-  renametask(task: ITasks, newName: string) {
-    let updatetaskName = {
+  renameTask(task: ITasks, newName: string) {
+    let updateTaskName = {
       ListId: task.ListId,
       id: task.id,
       name: newName,
@@ -47,6 +47,22 @@ export class TasksService {
       end_date: task.end_date,
       current_state: 'NOT Start',
     };
-    this._LocalStoreService.renametask(updatetaskName);
+    this._LocalStoreService.updateTask(updateTaskName);
   }
+
+  changeTaskDiscription(task: ITasks, newDiscription: string) {
+    let updatetaskDiscription = {
+      ListId: task.ListId,
+      id: task.id,
+      name:task.name,
+      description: newDiscription,
+      creating_date: task.creating_date,
+      lastupdate: new Date(),
+      start_date: task.start_date,
+      end_date: task.end_date,
+      current_state: 'NOT Start',
+    };
+    this._LocalStoreService.updateTask(updatetaskDiscription);
+  }
+
 }

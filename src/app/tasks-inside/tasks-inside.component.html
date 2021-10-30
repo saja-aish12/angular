@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="tasks-inside.component.css" />
     <script src="app.js" defer></script>
   </head>
@@ -29,19 +30,22 @@
           <th>current_state</th>
           <th></th>
         </table>
-        <table *ngFor="let t of task">
-          <tr *ngIf="t.ListId === this.listID">
-            <th>{{ t.id }}</th>
-            <th><b  #newname contenteditable="true" (keydown.enter)=" rename(t,newname.innerHTML)"  >{{ t.name }}</b></th>
-            <th>{{ t.description }}</th>
-            <th>{{ t.creating_date | date: "short" }}</th>
-            <th>{{ t.lastupdate | date: "short" }}</th>
-            <th>{{ t.start_date | date: "short" }}</th>
-            <th>{{ t.end_date | date: "short" }}</th>
-            <th>{{ t.current_state }}</th>
-            <th><button (click)="delete(t)">delete</button></th>
+        <table id="customers"   >
+          <div id="row"  *ngFor="let t of task">
+          <tr  *ngIf="t.ListId === this.listID">
+            <td>{{ t.id }}</td>
+            <td><b  #newname contenteditable="true" (keydown.enter)=" rename(t,newname.innerHTML)"  >{{ t.name }}</b></td>
+            <td ><p #newDiscrition contenteditable="true" (keydown.enter)=" changeDiscription(t,newDiscrition.innerHTML)">{{ t.description }}</p></td>
+            <td>{{ t.creating_date | date: "short" }}</td>
+            <td>{{ t.lastupdate | date: "short" }}</td>
+            <td>{{ t.start_date | date: "short" }}</td>
+            <td>{{ t.end_date | date: "short" }}</td>
+            <td>{{ t.current_state }}</td>
+            <td><i id="delete" (click)="delete(t)" class="glyphicon glyphicon-trash"></i></td>
           </tr>
+        </div>
         </table>
+        
       </div>
     </div>
     <div class="footer">
