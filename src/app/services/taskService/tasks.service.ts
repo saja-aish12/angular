@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LocalStoreService } from './local-store.service';
+import { LocalStoreService } from '../localStore/local-store.service';
 import { ITasks } from './tasks';
 
 @Injectable({

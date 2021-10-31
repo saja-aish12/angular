@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { ITasks } from '../tasks';
-import { TasksService } from '../tasks.service';
+import { ITasks } from 'src/app/services/taskService/tasks';
+import { TasksService } from 'src/app/services/taskService/tasks.service';
+
 
 @Component({
   selector: 'app-tasks-inside',

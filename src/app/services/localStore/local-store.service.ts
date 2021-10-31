@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { IList } from './list';
-import { ITasks } from './tasks';
+import { IList } from '../listService/list';
+import { ITasks } from '../taskService/tasks';
+
 
 @Injectable({
   providedIn: 'root',

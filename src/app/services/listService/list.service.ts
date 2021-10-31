@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { LocalStoreService } from '../localStore/local-store.service';
 import { IList } from './list';
-import { LocalStoreService } from './local-store.service';
 
 @Injectable({
   providedIn: 'root',

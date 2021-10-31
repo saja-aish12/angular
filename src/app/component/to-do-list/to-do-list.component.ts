@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { IList } from '../list';
-import { ListService } from '../list.service';
+import { IList } from 'src/app/services/listService/list';
+import { ListService } from 'src/app/services/listService/list.service';
+
 
 @Component({
   selector: 'app-to-do-list',
