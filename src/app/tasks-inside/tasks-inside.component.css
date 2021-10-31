@@ -109,12 +109,15 @@ td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  
 }
 #row:nth-child(even){background-color: white;}
-tr:hover {
+tr:hover  {
   background-color:  #e6e63359;
+  
 }
 
 #delete:hover {
   color:  red;
 }
+

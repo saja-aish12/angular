@@ -21,7 +21,7 @@ export class TasksService {
       ListId: get_list_id,
       id: this.taskid++,
       name: itemname,
-      description: 'description',
+      description: 'No description',
       creating_date: new Date(),
       lastupdate: new Date(),
       start_date: new Date(),
