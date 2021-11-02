@@ -1,3 +1,4 @@
+
 * {
   box-sizing: border-box;
 }
@@ -6,7 +7,7 @@ body {
   font-family: Arial;
   margin: 0;
   color: black;
-  background-image: url("../../assets/images/img2.png");
+  background-image: url("../../../assets/images/img2.png");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -52,7 +53,7 @@ body {
   justify-content: flex-start;
   width: 50%;
 
-  background: #f2f2f2;;
+  background: #f2f2f2;
 
   border: 1px solid #bfbfbf;
 
@@ -103,20 +104,23 @@ table {
   border-collapse: collapse;
   width: 100%;
 }
-th{background: rgb(115, 136, 196);}
+th{background: rgb(214, 170, 23);
+ 
+}
 th,
 td {
   padding: 8px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #ddd;
   
 }
-#row:nth-child(even){background-color: white;}
+
+tr:nth-child(even){background-color: white;}
+
 tr:hover  {
   background-color:  #e6e63359;
   
 }
-
 #delete:hover {
   color:  red;
 }

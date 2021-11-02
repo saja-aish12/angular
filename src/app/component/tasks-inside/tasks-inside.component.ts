@@ -39,8 +39,8 @@ export class TasksInsideComponent implements OnInit {
   }
   back() {
     let selectedid = this.listID ? this.listID : null;
-    // this.r2.navigate(['/department',{id:selectedid}]);
-    this.r2.navigate(['../', { id: selectedid }], { relativeTo: this.router });
+    this.r2.navigate(['/list',{id:selectedid}]);
+   // this.r2.navigate(['../', { id: selectedid }], { relativeTo: this.router });
   }
 
   rename(task: ITasks ,newName:string) {

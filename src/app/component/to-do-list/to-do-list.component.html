@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="to-do-list.component.css" />
+    
     <link rel="icon" href="toDoList.png" type="image/png" />
     <script src="app.js" defer></script>
   </head>
@@ -22,27 +22,46 @@
           placeholder="Add New Item "
           (keydown.enter)="addElementname(name.value); name.value = ''"
         />
-        <button (click)="addElementname(name.value); name.value = ''">
-          Add
-        </button>
+        <app-addmodal [modalName]="'add List'" [_listService]="this._listService" [list]="this.list"></app-addmodal>
       </div>
       <div class="fakeimg">
         <table>
           <th>id</th>
           <th>name</th>
           <th>creating date</th>
-          <th>last update date</th><th></th>
-          <ng-container    *ngFor="let l of list">
-          <tr id="row"  [class.selected]="isSelected(l)">
-            <td>{{ l.id }}</td>
-            <td><b  #newname contenteditable="true" (keydown.enter)=" rename(l,newname.innerHTML)"  >{{ l.name }}</b></td>
-            <td>{{ l.creating_date | date: "short" }}</td>
-            <td>{{ l.lastupdate | date: "short" }}</td>
-            <td><tr>
-              <td><button (click)="onSelect(l)">Open</button>    </td>
-              <td>  <i id="delete" (click)="delete(l)" class="glyphicon glyphicon-trash"></i></td>
-            </tr> </td>
-          </tr></ng-container>
+          <th>last update date</th>
+          <th>Action</th>
+          <ng-container *ngFor="let l of list">
+            <tr id="row" [class.selected]="isSelected(l)">
+              <td>{{ l.id }}</td>
+              <td>
+                <b
+                  #newname
+                  contenteditable="true"
+                  (keydown.enter)="rename(l, newname.innerHTML)"
+                  >{{ l.name }}</b
+                >
+              </td>
+              <td>{{ l.creating_date | date: "short" }}</td>
+              <td>{{ l.lastupdate | date: "short" }}</td>
+              <td>
+                <tr>
+                  <td><button (click)="onSelect(l)">Open</button></td>
+                  <td>
+                    <i
+                      id="delete"
+                      (click)="delete(l)"
+                      class="glyphicon glyphicon-trash btn btn-danger"
+                    ></i>
+                  </td>
+                  <td>
+                    <button type="button" class="btn-outline-info">Info</button>
+                  </td>
+                 
+                </tr>
+              </td>
+            </tr></ng-container
+          >
         </table>
       </div>
     </div>

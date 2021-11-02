@@ -1,3 +1,4 @@
+
 * {
   box-sizing: border-box;
 }
@@ -6,7 +7,7 @@ body {
   font-family: Arial;
   margin: 0;
   color: black;
-  background-image: url("../../assets/images/img2.png");
+  background-image: url("../../../assets/images/img2.png");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -52,26 +53,23 @@ body {
   justify-content: flex-start;
   width: 50%;
 
-  background: rgb(243, 243, 89);
+  background: #f2f2f2;
 
   border: 1px solid #bfbfbf;
 
   box-shadow: 10px 10px 5px #aaaaaa;
 }
 input {
-}
-.addName {
   width: 200px;
   font-size: 70%;
 }
-
 button {
   width: 50px;
   font-size: 70%;
 }
 .footer {
-  font-size: 10px;
-  background: rgba(21, 21, 122, 0.637);
+  font-size: 15px;
+  /* background:rgba(21, 21, 122, 0.637);*/
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,30 +91,35 @@ button {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(255, 208, 0);
+  background:#a1a1a1; /*rgb(255, 208, 0);*/
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #b39800;
+  background:#636362/* #b39800;*/
 }
 /*table style*/
 table {
   border-collapse: collapse;
   width: 100%;
 }
-
+th{background: rgb(214, 170, 23);}
 th,
 td {
   padding: 8px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #ddd;
+  
 }
 
-tr:hover {
-  background-color: rgb(115, 136, 196);
+tr:nth-child(even){background-color: white;}
+
+tr:hover  {
+  background-color:  #e6e63359;
+  
 }
 #delete:hover {
   color:  red;
 }
+

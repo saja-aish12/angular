@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+
 import { IList } from 'src/app/services/listService/list';
 import { ListService } from 'src/app/services/listService/list.service';
 
@@ -12,11 +13,11 @@ import { ListService } from 'src/app/services/listService/list.service';
 export class ToDoListComponent implements OnInit {
   @Input() name: string="";
   public list: IList[] = [];
-
+public closeResult:string="";
   constructor(
-    private _listService: ListService,
+    public _listService: ListService,
     private router: Router,
-    private r2: ActivatedRoute
+    private r2: ActivatedRoute,
   ) {}
   public slectedid: any;
   ngOnInit(): void {
@@ -33,7 +34,8 @@ export class ToDoListComponent implements OnInit {
     }
   }
   onSelect(d: any) {
-    this.router.navigate([d.id], { relativeTo: this.r2 });
+    this.router.navigate(['list_tasks',d.id]);
+    //this.router.navigate([d.id], { relativeTo: this.r2 });
   }
   rename(list: IList ,newName:string) {
     
@@ -47,5 +49,6 @@ export class ToDoListComponent implements OnInit {
   isSelected(L: any) {
     return L.id === this.slectedid;
   }
- 
+
+  
 }

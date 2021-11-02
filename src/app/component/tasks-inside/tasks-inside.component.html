@@ -4,12 +4,14 @@
     <title>tasks</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="tasks-inside.component.css" />
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <script src="app.js" defer></script>
   </head>
   <body>
@@ -18,38 +20,74 @@
 
     <div class="main">
       <div class="additem">
-        <input class="w3-animate-input" #name placeholder="Add New Item " (keydown.enter)="setTaskName(name.value); name.value = ''" />
+        <input
+          class="w3-animate-input"
+          #name
+          placeholder="Add New Item "
+          (keydown.enter)="setTaskName(name.value); name.value = ''"
+        />
         <button (click)="setTaskName(name.value); name.value = ''">Add</button>
       </div>
       <div class="fakeimg">
-        <table>
-          <th>id</th>
-          <th>name</th>
-          <th>description</th>
-          <th>creating date</th>
-          <th>last update date</th>
-          <th>start_date</th>
-          <th>end_date</th>
-          <th>current_state</th>
-          <th></th>
+        <table id="customers">
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Creating date</th>
+          <th>Last update</th>
+          <th>Start date</th>
+          <th>End date</th>
+          <th>Current state</th>
+          <th>Action</th>
+          <ng-container *ngFor="let t of task">
+            <tr id="row" *ngIf="t.ListId === this.listID">
+              <td>{{ t.id }}</td>
+              <td>
+                <p
+                  #newname
+                  contenteditable="true"
+                  (keydown.enter)="rename(t, newname.innerHTML)"
+                >
+                  {{ t.name }}
+                </p>
+              </td>
+              <td>
+                <p
+                  #newDiscrition
+                  contenteditable="true"
+                  (keydown.enter)="
+                    changeDiscription(t, newDiscrition.innerHTML)
+                  "
+                >
+                  {{ t.description }}
+                </p>
+              </td>
+              <td>{{ t.creating_date | date: "short" }}</td>
+              <td>{{ t.lastupdate | date: "short" }}</td>
+              <td>{{ t.start_date | date: "short" }}</td>
+              <td>{{ t.end_date | date: "short" }}</td>
+              <td>{{ t.current_state }}</td>
+              <td>
+                <tr>
+                  <td><button type="button" class="btn-info">Info</button></td>
+                  <td>
+                    <button type="button" class="btn-success">Details</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn-warning">Edit</button>
+                  </td>
+                  <td>
+                    <i
+                      id="delete"
+                      (click)="delete(t)"
+                      class="glyphicon glyphicon-trash"
+                    ></i>
+                  </td>
+                </tr>
+              </td>
+            </tr>
+          </ng-container>
         </table>
-        <table id="customers"   >
-          <ng-container  id="row"  *ngFor="let t of task">
-          <tr  *ngIf="t.ListId === this.listID">
-            <td>{{ t.id }}</td>
-            <td><p  #newname contenteditable="true" (keydown.enter)=" rename(t,newname.innerHTML)"  >{{ t.name }}</p>
-            </td>
-            <td ><p #newDiscrition contenteditable="true" (keydown.enter)=" changeDiscription(t,newDiscrition.innerHTML)">{{ t.description }}</p></td>
-            <td>{{ t.creating_date | date: "short" }}</td>
-            <td>{{ t.lastupdate | date: "short" }}</td>
-            <td>{{ t.start_date | date: "short" }}</td>
-            <td>{{ t.end_date | date: "short" }}</td>
-            <td>{{ t.current_state }}</td>
-            <td><i id="delete" (click)="delete(t)" class="glyphicon glyphicon-trash"></i></td>
-          </tr>
-        </ng-container>
-        </table>
-        
       </div>
     </div>
     <div class="footer">
