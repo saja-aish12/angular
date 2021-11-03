@@ -4,8 +4,6 @@
     <title>tasks</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <link
       rel="stylesheet"
@@ -24,17 +22,16 @@
           class="w3-animate-input"
           #name
           placeholder="Add New Item "
-          (keydown.enter)="setTaskName(name.value); name.value = ''"
+          (keydown.enter)="addNewTask(name.value); name.value = ''"
         />
-        <button (click)="setTaskName(name.value); name.value = ''">Add</button>
+        <button (click)="addNewTask(name.value); name.value = ''">Add</button>
       </div>
       <div class="fakeimg">
         <table id="customers">
           <th>ID</th>
           <th>Name</th>
           <th>Description</th>
-          <th>Creating date</th>
-          <th>Last update</th>
+          
           <th>Start date</th>
           <th>End date</th>
           <th>Current state</th>
@@ -62,8 +59,7 @@
                   {{ t.description }}
                 </p>
               </td>
-              <td>{{ t.creating_date | date: "short" }}</td>
-              <td>{{ t.lastupdate | date: "short" }}</td>
+              
               <td>{{ t.start_date | date: "short" }}</td>
               <td>{{ t.end_date | date: "short" }}</td>
               <td>{{ t.current_state }}</td>

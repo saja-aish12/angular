@@ -35,7 +35,7 @@ export class LocalStoreService {
   }
 
   deleteLists(list: IList) {
-    this.deleteListsTasks(list.id);
+   
 
     let text = localStorage.getItem(this.listArrayName);
 
@@ -64,69 +64,114 @@ export class LocalStoreService {
     const myJSON = JSON.stringify(this.listArray);
     localStorage.setItem(this.listArrayName, myJSON);
   }
-
-  getTasks(): ITasks[] {
-    let text = localStorage.getItem(this.taskArrayName);
-    let obj;
-    if (text != null) {
-      obj = JSON.parse(text);
-    }
-    return obj;
-  }
-
-  addTasks(obj: ITasks) {
-    let text = localStorage.getItem(this.taskArrayName);
+  getLastList():number{
+    let text = localStorage.getItem(this.listArrayName);
 
     if (text != null) {
-      this.taskArray = JSON.parse(text);
+      this.listArray = JSON.parse(text);
     }
-    this.taskArray.push(obj);
-    const myJSON = JSON.stringify(this.taskArray);
-    localStorage.setItem(this.taskArrayName, myJSON);
-  }
-
-  deleteTasks(task: ITasks) {
-    let text = localStorage.getItem(this.taskArrayName);
-
-    if (text != null) {
-      this.taskArray = JSON.parse(text);
-    }
-    let equaledtask = this.taskArray.filter(
-      (value: ITasks) => value.id !== task.id
+    let last=0;
+   this.listArray.forEach(
+      (value: IList) => last= value.id > last?value.id:last
     );
-    this.taskArray = equaledtask;
-
-    const myJSON = JSON.stringify(equaledtask);
-    localStorage.setItem(this.taskArrayName, myJSON);
+    return ++last;
+  }
+ 
+  getTasks(listId:number): ITasks[] {
+    let text = localStorage.getItem(this.listArrayName);
+    
+    if (text != null) {
+      this.listArray = JSON.parse(text);
+    }
+    let emptytask:ITasks[]=[];
+    let tasklist= this.listArray.find((value: IList) => value.id === listId)
+   if(tasklist) return tasklist.tasks;
+   else return emptytask;
   }
 
-  deleteListsTasks(listId: number) {
-    let text = localStorage.getItem(this.taskArrayName);
+  addTasks(obj: ITasks ,listId:number) {
+    let text = localStorage.getItem(this.listArrayName);
 
     if (text != null) {
-      this.taskArray = JSON.parse(text);
+      this.listArray = JSON.parse(text);
     }
-    let equaledtask = this.taskArray.filter(
-      (value: ITasks) => value.ListId !== listId
-    );
-    this.taskArray = equaledtask;
+   let emptytask= this.listArray.find((value: IList) => value.id === listId);
+    emptytask?.tasks.push(obj);
+  if(emptytask) { let updateListaray = {
+      id: listId,
+      name: emptytask?.name,
+      creating_date: emptytask?.creating_date,
+      lastupdate: new Date(),
+      tasks:emptytask?.tasks,
+    };
+    this.updateList(updateListaray);
+    }
 
-    const myJSON = JSON.stringify(equaledtask);
-    localStorage.setItem(this.taskArrayName, myJSON);
+    // if (emptytask !=null)emptytask.tasks.push(obj);
   }
-  updateTask(task: ITasks) {
-    let text = localStorage.getItem(this.taskArrayName);
+
+  deleteTasks(task:ITasks,listId: number) {
+    let text = localStorage.getItem(this.listArrayName);
 
     if (text != null) {
-      this.taskArray = JSON.parse(text);
+      this.listArray = JSON.parse(text);
     }
-    let equaledtask = this.taskArray.filter(
-      (value: ITasks) => value.id !== task.id
-    );
-    this.taskArray = equaledtask;
-    this.taskArray.push(task);
-    const myJSON = JSON.stringify(this.taskArray);
-    localStorage.setItem(this.taskArrayName, myJSON);
+   let theList= this.listArray.find((value: IList) => value.id === listId);
+   console.log(theList?.tasks);
+    if(theList) { let updateListaray = {
+      id: listId,
+      name: theList?.name,
+      creating_date: theList?.creating_date,
+      lastupdate: new Date(),
+      tasks:theList?.tasks.filter(
+        (value: ITasks) => value.id !== task.id
+      ),
+    };
+    this.updateList(updateListaray);
+    //this.taskArray = equaledtask;
+  //  console.log(updateListaray);
+    } 
+  }
+
+ 
+  updateTask(task: ITasks,listId: number) {
+    let text = localStorage.getItem(this.listArrayName);
+
+    if (text != null) {
+      this.listArray = JSON.parse(text);
+    }
+   let theList= this.listArray.find((value: IList) => value.id === listId);
+   let equaledtask = theList?.tasks.filter(
+    (value: ITasks) => value.id !== task.id
+  );
+  equaledtask = equaledtask?equaledtask:[];
+  equaledtask.push(task);
+    if(theList) { let updateListaray = {
+      id: listId,
+      name: theList?.name,
+      creating_date: theList?.creating_date,
+      lastupdate: new Date(),
+      tasks:equaledtask,
+    };
+    this.updateList(updateListaray);
+
+
+
+    }
   }
   
+  getLastTask(listId:number):number{
+    let text = localStorage.getItem(this.listArrayName);
+
+    if (text != null) {
+      this.listArray = JSON.parse(text);
+    }
+   let emptytask= this.listArray.find((value: IList) => value.id === listId);
+  
+    let last=0;
+   emptytask?.tasks.forEach(
+      (value: ITasks) => last= value.id > last?value.id:last
+    );
+    return ++last;
+  }
 }

@@ -7,19 +7,18 @@ import { ITasks } from './tasks';
   providedIn: 'root',
 })
 export class TasksService {
-  constructor(private _LocalStoreService: LocalStoreService) {}
-  public taskid = 0;
+    public taskid :number=0;
+  constructor(private _LocalStoreService: LocalStoreService) {
 
-  public taskArray: ITasks[] = [];
-  public taskArrayName = 'taskarray';
+  }
 
-  getTask(): ITasks[] {
+ /* getTask(listId:number): ITasks[] {
     return this._LocalStoreService.getTasks();
   }
   addTask(get_list_id: number, itemname: string) {
     let newTaskObject = {
       ListId: get_list_id,
-      id: this.taskid++,
+      id: this._LocalStoreService.getLastTask(get_list_id),
       name: itemname,
       description: 'No description',
       creating_date: new Date(),
@@ -64,5 +63,5 @@ export class TasksService {
     };
     this._LocalStoreService.updateTask(updatetaskDiscription);
   }
-
+*/
 }

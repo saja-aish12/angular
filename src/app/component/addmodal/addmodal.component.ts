@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { IList } from 'src/app/services/listService/list';
 import { ListService } from 'src/app/services/listService/list.service';
+import { ToDoListComponent } from '../to-do-list/to-do-list.component';
 @Component({
   selector: 'app-addmodal',
   templateUrl: './addmodal.component.html',
@@ -11,14 +12,13 @@ import { ListService } from 'src/app/services/listService/list.service';
 export class AddmodalComponent implements OnInit {
   @Input() modalName: string="";
  
-  @Input() list: IList[] = [];
-  @Input()
-  _listService!: ListService;
+ 
+  
   ngOnInit(): void {
   }
   closeResult = '';
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal ,private list:ToDoListComponent) {}
 
   open(content:any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -41,8 +41,9 @@ export class AddmodalComponent implements OnInit {
 
   addlist(itemname: string) {
     if (itemname.length > 0 && itemname.trim() != '') {
-      this._listService.addList(itemname);
-      this.list = this._listService.getList();
+      this.list._listService.addList(itemname);
+      this.list.list = this.list._listService.getList();
+      this.list.ngOnInit();
     }
   }
 

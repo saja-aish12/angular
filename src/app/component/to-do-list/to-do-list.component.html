@@ -5,6 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  />
     <link rel="stylesheet" href="to-do-list.component.css" />
     
     <link rel="icon" href="toDoList.png" type="image/png" />
@@ -22,7 +26,7 @@
           placeholder="Add New Item "
           (keydown.enter)="addElementname(name.value); name.value = ''"
         />
-        <app-addmodal [modalName]="'add List'" [_listService]="this._listService" [list]="this.list"></app-addmodal>
+        <app-addmodal [modalName]="'add List'"  ></app-addmodal>
       </div>
       <div class="fakeimg">
         <table>
@@ -47,17 +51,17 @@
               <td>
                 <tr>
                   <td><button (click)="onSelect(l)">Open</button></td>
+                 
+                  <td>
+                    <button type="button" class="btn-outline-info">Info</button>
+                  </td>
                   <td>
                     <i
                       id="delete"
                       (click)="delete(l)"
-                      class="glyphicon glyphicon-trash btn btn-danger"
+                      class="glyphicon glyphicon-trash"
                     ></i>
                   </td>
-                  <td>
-                    <button type="button" class="btn-outline-info">Info</button>
-                  </td>
-                 
                 </tr>
               </td>
             </tr></ng-container

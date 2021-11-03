@@ -114,7 +114,10 @@ td {
 }
 
 tr:nth-child(even){background-color: white;}
+tr:nth-child(even).selected{
+  background-color: rgba(34, 190, 13, 0.521);
 
+}
 tr:hover  {
   background-color:  #e6e63359;
   

@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-
 import { IList } from 'src/app/services/listService/list';
+
+
 import { ListService } from 'src/app/services/listService/list.service';
+import { AddmodalComponent } from '../addmodal/addmodal.component';
 
 
 @Component({
