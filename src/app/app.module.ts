@@ -8,7 +8,6 @@ import { TasksInsideComponent } from './component/tasks-inside/tasks-inside.comp
 import { ToDoListComponent } from './component/to-do-list/to-do-list.component';
 import { ListService } from './services/listService/list.service';
 import { LocalStoreService } from './services/localStore/local-store.service';
-import { TasksService } from './services/taskService/tasks.service';
 
 import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
@@ -25,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     //NgbDate
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, NgbDatepickerModule],
-  providers: [TasksService, ListService, LocalStoreService],
+  providers: [ ListService, LocalStoreService],
   bootstrap: [AppComponent],
   entryComponents: [AddmodalComponent],
 })

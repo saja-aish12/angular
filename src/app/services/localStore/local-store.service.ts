@@ -117,7 +117,7 @@ export class LocalStoreService {
       this.listArray = JSON.parse(text);
     }
    let theList= this.listArray.find((value: IList) => value.id === listId);
-   console.log(theList?.tasks);
+
     if(theList) { let updateListaray = {
       id: listId,
       name: theList?.name,

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ListService } from 'src/app/services/listService/list.service';
 import { ITasks } from 'src/app/services/taskService/tasks';
-import { TasksService } from 'src/app/services/taskService/tasks.service';
 
 
 @Component({
@@ -14,7 +13,6 @@ export class TasksInsideComponent implements OnInit {
   public listID: number = -1;
   public task: ITasks[] = [];
   constructor(
-    private _taskService: TasksService,
     private _listService:ListService,
     private router: ActivatedRoute,
     private r2: Router
