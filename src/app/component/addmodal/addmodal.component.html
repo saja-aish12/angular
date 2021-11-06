@@ -1,7 +1,6 @@
-
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{modalName}}</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{ modalName }}</h4>
     <button
       type="button"
       class="close"
@@ -16,50 +15,91 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="name">List Name</label>
+            <label for="listName">List Name</label>
             <input
-            class="w3-animate-input addName"
-            id="name"
-            #name
-            placeholder="Add New Item "
-            (keydown.enter)="addlist(name.value); name.value = ''"
-          />
-            <label for="dateOfBirth">Date of birth</label>
-            <div class="input-group">
-              
-              <input
-                id="dateOfBirth"
-                class="form-control"
-                placeholder="yyyy-mm-dd"
-                name="dp"
-                ngbDatepicker
-                #dp="ngbDatepicker"
-              />
-              <div class="input-group-append">
-                <button
-                  class="btn btn-outline-secondary calendar"
-                  (click)="dp.toggle()"
-                  type="button"
-                ></button>
-              </div>
-            </div>
+              class="w3-animate-input addName"
+              id="listName"
+              #listName
+              placeholder="Add New List Name "
+            />
+            <div class="input-group"></div>
           </div>
         </form>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            (click)="
+              modal.close('Save click');
+              addlist(listName.value);
+              listName.value = ''
+            "
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'List Details'">
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <table class="table table-bordered">
+              <tr scope="row">
+                <td scope="col">
+                  <label for="newlistName">List Name</label>
+                </td>
+                <td scope="col">
+                  <b id="newListName" #newListName contenteditable="true">
+                    {{ listId.name }}</b
+                  >
+                </td>
+              </tr>
+              <tr scope="row">
+                <td scope="col">
+                  <label for="newlistName">creating date</label>
+                </td>
+                <td scope="col">
+                  {{ listId.creating_date | date: "short" }}
+                </td>
+              </tr>
+              <tr scope="row">
+                <td scope="col">
+                  <label for="newlistName">last update </label>
+                </td>
+                <td scope="col">
+                  {{ listId.lastupdate | date: "short" }}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            (click)="
+              modal.close('Save click'); updateList(newListName.innerHTML)
+            "
+          >
+            Save
+          </button>
+        </div>
       </div>
     </div>
   </div>
-  <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-outline-dark"
-      (click)="modal.close('Save click')"
-    >
-      Save
-    </button>
-  </div>
 </ng-template>
 
-<button class="btn-outline-primary" (click)="open(content)">
-  {{modalName}}
-</button>
-
+<div [ngSwitch]="modalName">
+  <div *ngSwitchCase="'add List'">
+    <button class="btn-outline-primary" (click)="open(content)">
+      {{ modalName }}
+    </button>
+  </div>
+  <div *ngSwitchCase="'List Details'">
+    <button class="btn-info" (click)="open(content)">
+      {{ modalName }}
+    </button>
+  </div>
+</div>

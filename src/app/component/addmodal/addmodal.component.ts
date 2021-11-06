@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { IList } from 'src/app/services/listService/list';
 import { ListService } from 'src/app/services/listService/list.service';
+import { TasksInsideComponent } from '../tasks-inside/tasks-inside.component';
 import { ToDoListComponent } from '../to-do-list/to-do-list.component';
 @Component({
   selector: 'app-addmodal',
@@ -11,14 +12,16 @@ import { ToDoListComponent } from '../to-do-list/to-do-list.component';
 })
 export class AddmodalComponent implements OnInit {
   @Input() modalName: string="";
- 
+  @Input()
+  listId!: IList;
  
   
   ngOnInit(): void {
   }
   closeResult = '';
 
-  constructor(private modalService: NgbModal ,private list:ToDoListComponent) {}
+  constructor(private modalService: NgbModal ,
+    private list:ToDoListComponent ) {}
 
   open(content:any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -46,5 +49,7 @@ export class AddmodalComponent implements OnInit {
       this.list.ngOnInit();
     }
   }
-
+  updateList(newName:string) {
+    this.list.rename(this.listId,newName) ;
+  }
 }

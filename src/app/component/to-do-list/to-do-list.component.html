@@ -5,10 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-    <link
-    rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="to-do-list.component.css" />
     
     <link rel="icon" href="toDoList.png" type="image/png" />
@@ -20,50 +17,39 @@
 
     <div class="main">
       <div class="additem">
-        <input
-          class="w3-animate-input addName"
-          #name
-          placeholder="Add New Item "
-          (keydown.enter)="addElementname(name.value); name.value = ''"
-        />
+       
         <app-addmodal [modalName]="'add List'"  ></app-addmodal>
       </div>
       <div class="fakeimg">
         <table>
           <th>id</th>
-          <th>name</th>
-          <th>creating date</th>
-          <th>last update date</th>
-          <th>Action</th>
+          <th >name</th>
+          <th colspan="2"> Action</th>
           <ng-container *ngFor="let l of list">
             <tr id="row" [class.selected]="isSelected(l)">
               <td>{{ l.id }}</td>
               <td>
-                <b
+                <button><b
                   #newname
-                  contenteditable="true"
-                  (keydown.enter)="rename(l, newname.innerHTML)"
+                  (click)="onSelect(l)"
+            
                   >{{ l.name }}</b
-                >
+                ></button>
               </td>
-              <td>{{ l.creating_date | date: "short" }}</td>
-              <td>{{ l.lastupdate | date: "short" }}</td>
-              <td>
-                <tr>
-                  <td><button (click)="onSelect(l)">Open</button></td>
+             
                  
                   <td>
-                    <button type="button" class="btn-outline-info">Info</button>
+                    <app-addmodal [modalName]="'List Details'" [listId]="l" ></app-addmodal>
                   </td>
                   <td>
                     <i
                       id="delete"
                       (click)="delete(l)"
-                      class="glyphicon glyphicon-trash"
+                      class="fa fa-trash-o" 
+                      style="font-size:24px"
                     ></i>
                   </td>
-                </tr>
-              </td>
+             
             </tr></ng-container
           >
         </table>
