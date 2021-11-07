@@ -17,7 +17,6 @@
           <div class="form-group">
             <label for="listName">List Name</label>
             <input
-              class="w3-animate-input addName"
               id="listName"
               #listName
               placeholder="Add New List Name "
@@ -52,24 +51,24 @@
                 </td>
                 <td scope="col">
                   <b id="newListName" #newListName contenteditable="true">
-                    {{ listId.name }}</b
+                    {{ id.name }}</b
                   >
                 </td>
               </tr>
               <tr scope="row">
                 <td scope="col">
-                  <label for="newlistName">creating date</label>
+                  <label >creating date</label>
                 </td>
                 <td scope="col">
-                  {{ listId.creating_date | date: "short" }}
+                  {{ id.creating_date | date: "short" }}
                 </td>
               </tr>
               <tr scope="row">
                 <td scope="col">
-                  <label for="newlistName">last update </label>
+                  <label >last update </label>
                 </td>
                 <td scope="col">
-                  {{ listId.lastupdate | date: "short" }}
+                  {{ id.lastupdate | date: "short" }}
                 </td>
               </tr>
             </table>
@@ -88,18 +87,109 @@
         </div>
       </div>
     </div>
+
+    <div *ngSwitchCase="'add Task'">
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+             
+          
+            <table class="table table-bordered">
+              <tr scope="row">
+                <td scope="col">
+                  <label for="taskName">List Name</label>
+                </td>
+                <td scope="col">
+                   <input  class="form-control" id="taskName" #taskName contenteditable="true"  placeholder="Add Task Name ">
+                  
+                </td>
+              </tr>
+              <tr scope="row">
+                <td scope="col">
+                  <label for="taskDescription">List Name</label>
+                </td>
+                <td scope="col">
+                   <input  class="form-control" id="taskDescription" #taskDescription contenteditable="true"  placeholder="Add Task Description ">
+                  
+                </td>
+              </tr>
+              <tr scope="row">
+                <td scope="col">
+                  <label for="startTask">startting date</label>
+                </td>
+                <td scope="col">
+                  <div class="input-group">
+                  <input
+                id="dateOfBirth"
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="startT"
+                ngbDatepicker
+                #startT="ngbDatepicker"
+              />
+              <div class="input-group-append">
+               <button
+                  class="btn btn-outline-secondary calendar"
+                  (click)="startT.toggle()"
+                  type="button"
+                ></button>
+              </div></div>
+                </td>
+              </tr>
+              <tr scope="row">
+                <td scope="col">
+                  <label for="endTask">End date</label>
+                </td>
+                <td scope="col">
+                  <div class="input-group">
+                  <input
+                id="dateOfBirth"
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="endT"
+                ngbDatepicker
+                #endT="ngbDatepicker"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary calendar"
+                  (click)="endT.toggle()"
+                  type="button"
+                ></button>
+              </div></div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            (click)="
+              modal.close('Save click');
+              addTask(taskName.value);
+              taskName.value = ''
+            "
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </ng-template>
 
 <div [ngSwitch]="modalName">
-  <div *ngSwitchCase="'add List'">
+  <div *ngSwitchCase="['add List' , 'add Task'].includes(modalName) ? modalName : ''">
     <button class="btn-outline-primary" (click)="open(content)">
       {{ modalName }}
     </button>
   </div>
-  <div *ngSwitchCase="'List Details'">
+  <div *ngSwitchCase="['List Details' , 'Task Details'].includes(modalName) ? modalName : ''">
     <button class="btn-info" (click)="open(content)">
       {{ modalName }}
     </button>
   </div>
+  
 </div>

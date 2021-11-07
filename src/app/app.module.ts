@@ -11,6 +11,7 @@ import { LocalStoreService } from './services/localStore/local-store.service';
 
 import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { taskmodalComponent } from './component/addmodal/taskmodalComponent';
 
 @NgModule({
   declarations: [
@@ -19,13 +20,13 @@ import { FormsModule } from '@angular/forms';
     TasksInsideComponent,
     PageNotFoundComponent,
     AddmodalComponent,
-    
+    taskmodalComponent,
     //NgbModule,
     //NgbDate
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, NgbDatepickerModule],
   providers: [ ListService, LocalStoreService],
   bootstrap: [AppComponent],
-  entryComponents: [AddmodalComponent],
+  entryComponents: [AddmodalComponent ,taskmodalComponent],
 })
 export class AppModule {}

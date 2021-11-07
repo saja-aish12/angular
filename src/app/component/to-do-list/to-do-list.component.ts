@@ -29,12 +29,12 @@ public closeResult:string="";
       if ((id = p.get('id')) != null) this.slectedid = parseInt(id);
     });
   }
-  addElementname(itemname: string) {
+ /* addElementname(itemname: string) {
     if (itemname.length > 0 && itemname.trim() != '') {
       this._listService.addList(itemname);
       this.list = this._listService.getList();
     }
-  }
+  }*/
   onSelect(d: any) {
     this.router.navigate(['list_tasks',d.id]);
     //this.router.navigate([d.id], { relativeTo: this.r2 });

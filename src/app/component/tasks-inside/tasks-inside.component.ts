@@ -13,7 +13,7 @@ export class TasksInsideComponent implements OnInit {
   public listID: number = -1;
   public task: ITasks[] = [];
   constructor(
-    private _listService:ListService,
+    public _listService:ListService,
     private router: ActivatedRoute,
     private r2: Router
   ) {

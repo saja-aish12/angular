@@ -22,6 +22,7 @@
           (keydown.enter)="addNewTask(name.value); name.value = ''"
         />
         <button (click)="addNewTask(name.value); name.value = ''">Add</button>
+        <app-taskmodal [modalName]="'add Task'"></app-taskmodal>
       </div>
       <div class="fakeimg">
         <table id="customers">
