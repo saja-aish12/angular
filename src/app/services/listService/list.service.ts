@@ -50,16 +50,16 @@ export class ListService {
   getTask(listId:number): ITasks[] {
     return this._LocalStoreService.getTasks(listId);
   }
-  addTask(get_list_id: number, itemname: string) {
+  addTask(get_list_id: number, itemname: string,description:string ,start_date:Date,end_date:Date) {
     let newTaskObject = {
       ListId: get_list_id,
       id: this._LocalStoreService.getLastTask(get_list_id),
       name: itemname,
-      description: 'No description',
+      description: description,
       creating_date: new Date(),
       lastupdate: new Date(),
-      start_date: new Date(),
-      end_date: new Date(),
+      start_date: start_date,
+      end_date: end_date,
       current_state: 'NOT Start',
     };
 
@@ -69,33 +69,20 @@ export class ListService {
   deleteTask(task: ITasks ,get_list_id: number) {
     this._LocalStoreService.deleteTasks(task,get_list_id);
   }
-  renameTask(task: ITasks, newName: string,get_list_id: number) {
+  updateTask(task: ITasks, newName: string,newDiscription: string ,startDate:Date,endDate:Date,state:string,get_list_id: number) {
     let updateTaskName = {
       ListId: task.ListId,
       id: task.id,
       name: newName,
-      description: 'description',
+      description: newDiscription,
       creating_date: task.creating_date,
       lastupdate: new Date(),
-      start_date: task.start_date,
-      end_date: task.end_date,
-      current_state: 'NOT Start',
+      start_date: startDate,
+      end_date: endDate,
+      current_state: state,
     };
     this._LocalStoreService.updateTask(updateTaskName,get_list_id);
   }
 
-  changeTaskDiscription(task: ITasks, newDiscription: string ,get_list_id: number) {
-    let updatetaskDiscription = {
-      ListId: task.ListId,
-      id: task.id,
-      name:task.name,
-      description: newDiscription,
-      creating_date: task.creating_date,
-      lastupdate: new Date(),
-      start_date: task.start_date,
-      end_date: task.end_date,
-      current_state: 'NOT Start',
-    };
-    this._LocalStoreService.updateTask(updatetaskDiscription,get_list_id);
-  }
+
 }

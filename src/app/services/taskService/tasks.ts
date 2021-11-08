@@ -2,10 +2,10 @@ export interface ITasks {
   ListId: number;
   id: number;
   name: string;
-  description: String;
+  description: string;
   creating_date: Date;
   lastupdate: Date;
   start_date: Date;
   end_date: Date;
-  current_state: String;
+  current_state: string;
 }

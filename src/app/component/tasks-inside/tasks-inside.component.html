@@ -5,7 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-   
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link rel="stylesheet" href="tasks-inside.component.css" />
     <script src="app.js" defer></script>
   </head>
@@ -15,66 +18,80 @@
 
     <div class="main">
       <div class="additem">
-        <input
-          class="w3-animate-input"
-          #name
-          placeholder="Add New Item "
-          (keydown.enter)="addNewTask(name.value); name.value = ''"
-        />
-        <button (click)="addNewTask(name.value); name.value = ''">Add</button>
         <app-taskmodal [modalName]="'add Task'"></app-taskmodal>
       </div>
       <div class="fakeimg">
         <table id="customers">
           <th>ID</th>
           <th>Name</th>
-          <th>Description</th>
-          
-          <th>Start date</th>
-          <th>End date</th>
-          <th>Current state</th>
-          <th>Action</th>
+
+          <th colspan="3">Action</th>
           <ng-container *ngFor="let t of task">
             <tr id="row" *ngIf="t.ListId === this.listID">
               <td>{{ t.id }}</td>
               <td>
-                <p
-                  #newname
-                  contenteditable="true"
-                  (keydown.enter)="rename(t, newname.innerHTML)"
-                >
-                  {{ t.name }}
-                </p>
+                {{ t.name }}
               </td>
-              <td>
-                <p
-                  #newDiscrition
-                  contenteditable="true"
-                  (keydown.enter)="
-                    changeDiscription(t, newDiscrition.innerHTML)
-                  "
-                >
-                  {{ t.description }}
-                </p>
-              </td>
-              
-              <td>{{ t.start_date | date: "short" }}</td>
-              <td>{{ t.end_date | date: "short" }}</td>
-              <td>{{ t.current_state }}</td>
+
               <td>
                 <tr>
-                  <td><button type="button" class="btn-info">Info</button></td>
                   <td>
-                    <button type="button" class="btn-success">Details</button>
+                    <div [ngSwitch]="t.current_state">
+                      <div *ngSwitchCase="'NOT Start'">
+                        <div
+                          *ngIf="
+                            t.end_date >= getDate();
+                            then then_block;
+                            else else_block
+                          "
+                        ></div>
+                        <ng-template #then_block>
+                          <button (click)="changeState(t)" type="button" class="btn btn-success">
+                            Start
+                          </button>
+                        </ng-template>
+                        <ng-template #else_block>
+                          <button (click)="changeState(t)" type="button" class="btn btn-danger">
+                            Start
+                          </button>
+                        </ng-template>
+                      </div>
+                      <div *ngSwitchCase="'in Progress'">
+                        <div
+                        *ngIf="
+                          t.end_date >= getDate();
+                          then then_block;
+                          else else_block
+                        "
+                      ></div>
+                      <ng-template #then_block>
+                        <button (click)="changeState(t)" type="button" class="btn btn-warning">
+                          In Progress
+                        </button>
+                      </ng-template>
+                      <ng-template #else_block>
+                        <button (click)="changeState(t)" type="button" class="btn btn-danger">
+                          In Progress
+                        </button>
+                      </ng-template>
+                      </div>
+                      <div *ngSwitchCase="'Done'">
+                        <button type="button" class="btn btn-primary">Done</button>
+                      </div>
+                    </div>
                   </td>
                   <td>
-                    <button type="button" class="btn-warning">Edit</button>
+                    <app-taskmodal
+                      [modalName]="'Task Details'"
+                      [idT]="t"
+                    ></app-taskmodal>
                   </td>
                   <td>
                     <i
                       id="delete"
                       (click)="delete(t)"
-                      class="glyphicon glyphicon-trash"
+                      class="fa fa-trash-o"
+                      style="font-size: 24px"
                     ></i>
                   </td>
                 </tr>

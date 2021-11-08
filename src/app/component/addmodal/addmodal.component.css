@@ -11,9 +11,15 @@ ng-template {
     left: 0;
 
 }
-
-
-
+label{
+    color: blue;
+}
+#save,h4{
+    color: tomato;
+}
+#close{
+    color: red;
+}
 .modal-container {
 
     background-color: var(--white);

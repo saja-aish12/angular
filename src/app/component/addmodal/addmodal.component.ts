@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { IList } from 'src/app/services/listService/list';
+import { ITasks } from 'src/app/services/taskService/tasks';
 import { ToDoListComponent } from '../to-do-list/to-do-list.component';
 @Component({
   selector: 'app-addmodal',
@@ -12,7 +13,8 @@ export class AddmodalComponent implements OnInit {
   @Input() modalName: string="";
   @Input()
   id!: IList;
- 
+  @Input()
+    idT!: ITasks;
   
   ngOnInit(): void {
   }
@@ -50,6 +52,7 @@ export class AddmodalComponent implements OnInit {
   updateList(newName:string) {
     this.list.rename(this.id,newName) ;
   }
-  addTask(itemname: string) {}
+  addTask(name: string ,description:string ,start_date:any,end_date:any) {}
+  updateTask (name: string ,description:string ,start_date:any,end_date:any) {}
 }
 
