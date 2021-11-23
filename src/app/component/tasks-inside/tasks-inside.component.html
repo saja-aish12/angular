@@ -27,14 +27,13 @@
 
           <th colspan="3">Action</th>
           <ng-container *ngFor="let t of task">
-            <tr id="row" *ngIf="t.ListId === this.listID">
+            <tr id="row" >
               <td>{{ t.id }}</td>
               <td>
                 {{ t.name }}
               </td>
 
-              <td>
-                <tr>
+             
                   <td>
                     <div [ngSwitch]="t.current_state">
                       <div *ngSwitchCase="'NOT Start'">
@@ -94,8 +93,7 @@
                       style="font-size: 24px"
                     ></i>
                   </td>
-                </tr>
-              </td>
+                
             </tr>
           </ng-container>
         </table>

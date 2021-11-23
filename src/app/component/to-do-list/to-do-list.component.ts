@@ -23,7 +23,7 @@ public closeResult:string="";
   ) {}
   public slectedid: any;
   ngOnInit(): void {
-    this.list = this._listService.getList();
+     this._listService.getList().subscribe((data : IList[])=>{console.log(data);this.list=data});
     this.r2.paramMap.subscribe((p: ParamMap) => {
       let id;
       if ((id = p.get('id')) != null) this.slectedid = parseInt(id);
@@ -42,11 +42,15 @@ public closeResult:string="";
   rename(list: IList ,newName:string) {
     
     this._listService.renameList(list ,newName);
-    this.list = this._listService.getList();
+    this._listService.getList().subscribe((data : IList[])=>{this.list=data});
+   
+  //  this.list = this._listService.getList();
   }
   delete(list: IList) {
     this._listService.deleteList(list);
-    this.list = this._listService.getList();
+    this._listService.getList().subscribe((data : IList[])=>{this.list=data});
+   
+   // this.list = this._listService.getList();
   }
   isSelected(L: any) {
     return L.id === this.slectedid;

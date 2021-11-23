@@ -26,13 +26,14 @@ export class TasksInsideComponent implements OnInit {
       let id;
       if ((id = p.get('id')) != null) {
         this.listID = parseInt(id);
-        this.task = this._listService.getTask(this.listID); //this.listID
-      }
+        this._listService.getTask(this.listID).subscribe((data : ITasks[])=>{this.task=data});
+     }
     });
   }
   delete(deleteob: ITasks) {
     this._listService.deleteTask(deleteob,this.listID);
-    this.task = this._listService.getTask(this.listID);
+    this._listService.getTask(this.listID).subscribe((data : ITasks[])=>{this.task=data});
+    
   }
   addNewTask(itemname: string) {
     if (itemname.length > 0 && itemname.trim() != '') {
@@ -53,7 +54,7 @@ return dat.toISOString().substring(0,10);
   }
   changeState(taskstate:ITasks){
    let newState=taskstate.current_state==="NOT Start"?"in Progress":"Done";
-    this._listService.updateTask( taskstate,taskstate.name,taskstate.description,taskstate.start_date,taskstate.end_date,newState,taskstate.ListId);
+    this._listService.updateTask( taskstate,taskstate.name,taskstate.description,taskstate.start_date,taskstate.end_date,newState,taskstate.list_id);
     this.ngOnInit();
   }
 }

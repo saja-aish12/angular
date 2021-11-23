@@ -10,7 +10,7 @@ import { ListService } from './services/listService/list.service';
 import { LocalStoreService } from './services/localStore/local-store.service';
 
 import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { taskmodalComponent } from './component/addmodal/taskmodalComponent';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { taskmodalComponent } from './component/addmodal/taskmodalComponent';
     //NgbModule,
     //NgbDate
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, NgbDatepickerModule],
+  imports: [BrowserModule, AppRoutingModule, NgbModule, NgbDatepickerModule,HttpClientModule],
   providers: [ ListService, LocalStoreService],
   bootstrap: [AppComponent],
   entryComponents: [AddmodalComponent ,taskmodalComponent],

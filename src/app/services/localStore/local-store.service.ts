@@ -1,43 +1,52 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IList } from '../listService/list';
 import { ITasks } from '../taskService/tasks';
-
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocalStoreService {
-  constructor() {}
+  private listUrl="http://localhost:8080/api/v1/list";
+  private taskUrl="http://localhost:8080/api/v1/task";
+ 
+  constructor(private http :HttpClient) {}
   public listArray: IList[] = [];
   public listArrayName = 'listarray';
 
-  public taskArray: ITasks[] = [];
-  public taskArrayName = 'taskarray';
 
-  getLists(): IList[] {
-    let text = localStorage.getItem(this.listArrayName);
+  getLists(): Observable <IList[]> {
+   /* let text = localStorage.getItem(this.listArrayName);
     let obj;
     if (text != null) {
       obj = JSON.parse(text);
     }
-    return obj;
+    return obj;*/
+    return this.http.get<IList[]>(`${this.listUrl}`);
   }
-
-  addLists(obj: IList) {
-    let text = localStorage.getItem(this.listArrayName);
+ 
+  addLists(obj: IList): Observable<IList> {
+    
+    /*let text = localStorage.getItem(this.listArrayName);
 
     if (text != null) {
       this.listArray = JSON.parse(text);
     }
     this.listArray.push(obj);
     const myJSON = JSON.stringify(this.listArray);
-    localStorage.setItem(this.listArrayName, myJSON);
-  }
+    localStorage.setItem(this.listArrayName, myJSON);*/
+   
+    return this.http.post<IList>(this.listUrl, obj);
 
-  deleteLists(list: IList) {
+  }
+ 
+  
+  deleteLists(list: IList): Observable<any> {
    
 
-    let text = localStorage.getItem(this.listArrayName);
+  /*  let text = localStorage.getItem(this.listArrayName);
 
     if (text != null) {
       this.listArray = JSON.parse(text);
@@ -48,10 +57,12 @@ export class LocalStoreService {
     this.listArray = equaledList;
 
     const myJSON = JSON.stringify(equaledList);
-    localStorage.setItem(this.listArrayName, myJSON);
+    localStorage.setItem(this.listArrayName, myJSON);*/
+   return this.http.delete(`${this.listUrl}/${list.id}`);
+    
   }
-  updateList(list: IList) {
-    let text = localStorage.getItem(this.listArrayName);
+  updateList(list: IList): Observable<any> {
+   /* let text = localStorage.getItem(this.listArrayName);
 
     if (text != null) {
       this.listArray = JSON.parse(text);
@@ -62,7 +73,9 @@ export class LocalStoreService {
     this.listArray = equaledList;
     this.listArray.push(list);
     const myJSON = JSON.stringify(this.listArray);
-    localStorage.setItem(this.listArrayName, myJSON);
+    localStorage.setItem(this.listArrayName, myJSON);*/
+    return this.http.put(this.listUrl, list);
+
   }
   getLastList():number{
     let text = localStorage.getItem(this.listArrayName);
@@ -77,8 +90,8 @@ export class LocalStoreService {
     return ++last;
   }
  
-  getTasks(listId:number): ITasks[] {
-    let text = localStorage.getItem(this.listArrayName);
+  getTasks(listId:number): Observable <ITasks[]> {
+   /* let text = localStorage.getItem(this.listArrayName);
     
     if (text != null) {
       this.listArray = JSON.parse(text);
@@ -86,11 +99,12 @@ export class LocalStoreService {
     let emptytask:ITasks[]=[];
     let tasklist= this.listArray.find((value: IList) => value.id === listId)
    if(tasklist) return tasklist.tasks;
-   else return emptytask;
+   else return emptytask;*/
+   return this.http.get<ITasks[]>(`${this.taskUrl}/${listId}`);
   }
 
-  addTasks(obj: ITasks ,listId:number) {
-    let text = localStorage.getItem(this.listArrayName);
+  addTasks(obj: ITasks ,listId:number): Observable<ITasks> {
+  /*  let text = localStorage.getItem(this.listArrayName);
 
     if (text != null) {
       this.listArray = JSON.parse(text);
@@ -101,17 +115,17 @@ export class LocalStoreService {
       id: listId,
       name: emptytask?.name,
       creating_date: emptytask?.creating_date,
-      lastupdate: new Date(),
+      last_update: new Date(),
       tasks:emptytask?.tasks,
     };
     this.updateList(updateListaray);
-    }
+  }*/
+    return this.http.post<ITasks>(this.taskUrl, obj);
 
-    // if (emptytask !=null)emptytask.tasks.push(obj);
   }
 
-  deleteTasks(task:ITasks,listId: number) {
-    let text = localStorage.getItem(this.listArrayName);
+  deleteTasks(task:ITasks,listId: number): Observable<ITasks> {
+/*    let text = localStorage.getItem(this.listArrayName);
 
     if (text != null) {
       this.listArray = JSON.parse(text);
@@ -122,20 +136,21 @@ export class LocalStoreService {
       id: listId,
       name: theList?.name,
       creating_date: theList?.creating_date,
-      lastupdate: new Date(),
+      last_update: new Date(),
       tasks:theList?.tasks.filter(
         (value: ITasks) => value.id !== task.id
       ),
     };
     this.updateList(updateListaray);
-    //this.taskArray = equaledtask;
-  //  console.log(updateListaray);
-    } 
+   
+    } */
+    return this.http.delete<ITasks>(`${this.taskUrl}/${listId}`);
+
   }
 
  
-  updateTask(task: ITasks,listId: number) {
-    let text = localStorage.getItem(this.listArrayName);
+  updateTask(task: ITasks,listId: number): Observable<ITasks> {
+   /* let text = localStorage.getItem(this.listArrayName);
 
     if (text != null) {
       this.listArray = JSON.parse(text);
@@ -150,14 +165,13 @@ export class LocalStoreService {
       id: listId,
       name: theList?.name,
       creating_date: theList?.creating_date,
-      lastupdate: new Date(),
+      last_update: new Date(),
       tasks:equaledtask,
     };
     this.updateList(updateListaray);
+    }*/
+    return this.http.put<ITasks>(this.taskUrl, task);
 
-
-
-    }
   }
   
   getLastTask(listId:number):number{
@@ -175,3 +189,5 @@ export class LocalStoreService {
     return ++last;
   }
 }
+
+

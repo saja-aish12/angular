@@ -4,6 +4,6 @@ export interface IList {
   id: number;
   name: string;
   creating_date: Date;
-  lastupdate: Date;
+  last_update: Date;
   tasks:ITasks[];
 }
