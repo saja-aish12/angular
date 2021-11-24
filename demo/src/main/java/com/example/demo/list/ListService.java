@@ -29,7 +29,9 @@ public class ListService {
     }
     public void updateList(ListModel list) {
         ListModel newList  = new ListModel(list);
-        listRepository.save(newList);
+
+        listRepository.save(list);
+
     }
 
     public void deleteList(Integer listId) {

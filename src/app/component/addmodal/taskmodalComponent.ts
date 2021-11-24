@@ -48,7 +48,7 @@ export class taskmodalComponent implements OnInit {
   }
 
   addlist(itemname: string) {}
-  updateList(newName: string) {}
+  updateList(list:IList,newName: string) {}
 
   addTask(name: string, description: string, start_date: any, end_date: any) {
     if (

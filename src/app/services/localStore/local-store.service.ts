@@ -120,11 +120,11 @@ export class LocalStoreService {
     };
     this.updateList(updateListaray);
   }*/
-    return this.http.post<ITasks>(this.taskUrl, obj);
+    return this.http.post<ITasks>(`${this.taskUrl}/add/${listId}`, obj);
 
   }
 
-  deleteTasks(task:ITasks,listId: number): Observable<ITasks> {
+  deleteTasks(task:ITasks): Observable<ITasks> {
 /*    let text = localStorage.getItem(this.listArrayName);
 
     if (text != null) {
@@ -144,7 +144,8 @@ export class LocalStoreService {
     this.updateList(updateListaray);
    
     } */
-    return this.http.delete<ITasks>(`${this.taskUrl}/${listId}`);
+    
+    return this.http.delete<ITasks>(`${this.taskUrl}/delete/${task.id}`);
 
   }
 
@@ -170,7 +171,7 @@ export class LocalStoreService {
     };
     this.updateList(updateListaray);
     }*/
-    return this.http.put<ITasks>(this.taskUrl, task);
+    return this.http.put<ITasks>(`${this.taskUrl}/update/${task.id}`, task);
 
   }
   

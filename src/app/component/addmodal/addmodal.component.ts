@@ -45,12 +45,15 @@ export class AddmodalComponent implements OnInit {
   addlist(itemname: string) {
     if (itemname.length > 0 && itemname.trim() != '') {
       this.list._listService.addList(itemname);
+      this.list._listService.getList().subscribe((data : IList[])=>{this.list.list=data});
+   
    //  this.list.list = this.list._listService.getList();
       this.list.ngOnInit();
     }
   }
-  updateList(newName:string) {
-    this.list.rename(this.id,newName) ;
+  updateList( list:IList,newName:string) {
+    
+    this.list.rename(list,newName) ;
   }
   addTask(name: string ,description:string ,start_date:any,end_date:any) {}
   updateTask (name: string ,description:string ,start_date:any,end_date:any) {}

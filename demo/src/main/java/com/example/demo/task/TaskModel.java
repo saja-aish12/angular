@@ -63,17 +63,30 @@ public class TaskModel implements Serializable {
         this.list = list;
     }
 
-    public TaskModel(TaskModel list ,ListModel listModel) {
-        this.name = list.name;
-        this.description = list.description;
-        this.creating_date = list.creating_date;
-        this.last_update = list.last_update;
-        this.start_date = list.start_date;
-        this.end_date = list.end_date;
-        this.current_state = list.current_state;
+    public TaskModel(TaskModel task ,ListModel listModel) {
+      this.id = task.id;
+        this.name = task.name;
+        this.description = task.description;
+        this.creating_date = task.creating_date;
+        this.last_update = task.last_update;
+        this.start_date = task.start_date;
+        this.end_date = task.end_date;
+        this.current_state = task.current_state;
         this.list = listModel;
 
     }
+  public TaskModel(ListModel listModel,TaskModel task ) {
+
+    this.name = task.name;
+    this.description = task.description;
+    this.creating_date = task.creating_date;
+    this.last_update = task.last_update;
+    this.start_date = task.start_date;
+    this.end_date = task.end_date;
+    this.current_state = task.current_state;
+    this.list = listModel;
+
+  }
     public int getId() {
         return id;
     }

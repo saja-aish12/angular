@@ -1,13 +1,11 @@
 package com.example.demo.task;
 
-import com.example.demo.list.ListModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -18,17 +16,7 @@ public class taskController {
     public taskController( taskService taskService) {
         this.taskService = taskService;
     }
-    /*@GetMapping
-    public ResponseEntity < List<TaskModel>> getTasks(){
 
-        try {
-            List<TaskModel> results = taskService.getTasks();
-            return new ResponseEntity<>(results, HttpStatus.OK);
-        }
-        catch(Error error) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-    }*/
     @GetMapping("{listId}")
     public ResponseEntity<List<TaskModel>> getTasks(@PathVariable("listId")int listId) {
         try {
@@ -41,21 +29,19 @@ public class taskController {
         }
     }
 
-    @PostMapping
-    public void registerNewTask(@RequestBody TaskModel task){
-        taskService.addNewTask(task);
-    }
-    @DeleteMapping(path = "{TaskId}")
-    public void deleteTask(@PathVariable("TaskId")Integer id){
-        taskService.deleteTask(id);
+    @PostMapping("/add/{listId}")
+    public void registerNewTask(@PathVariable("listId")Integer listId,@RequestBody TaskModel task){
+
+        taskService.addNewTask(task,listId);
     }
 
-    @PutMapping
-    public void updateTask(@RequestBody TaskModel task){
-        taskService.updateTask(task);
+    @PutMapping(path = "/update/{listId}")
+    public void updateTask(@PathVariable("listId")Integer listId,@RequestBody TaskModel task){
+
+      taskService.updateTask(task,listId);
     }
 
-    @DeleteMapping(path = "{taskId}")
+    @DeleteMapping(path = "/delete/{taskId}")
     public void deleteList(@PathVariable("taskId")Integer taskId){
         taskService.deleteTask(taskId);
     }

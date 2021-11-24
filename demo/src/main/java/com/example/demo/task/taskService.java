@@ -27,15 +27,18 @@ public class taskService {
     }
 
 
-    public void addNewTask(TaskModel task) {
-        ListModel list =listRepository.getById(task.getList().getId());
+    public void addNewTask(TaskModel task ,Integer id) {
+        ListModel list =listRepository.getById(id);
 
-        TaskModel newTask  = new TaskModel(task ,list);
+        TaskModel newTask  = new TaskModel(list,task);
         taskRepository.save(newTask);
     }
-    public void updateTask (TaskModel task) {
+    public void updateTask (TaskModel task ,Integer id) {
+      ListModel list =listRepository.getById(id);
 
-        taskRepository.save(task);
+      TaskModel updateTask  = new TaskModel(task,list);
+
+        taskRepository.save(updateTask);
     }
     public void deleteTask(Integer id) {
         boolean exist=taskRepository.existsById(id);

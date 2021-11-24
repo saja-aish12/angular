@@ -1,5 +1,4 @@
 export interface ITasks {
-  list_id: number;
   id: number;
   name: string;
   description: string;
@@ -8,4 +7,5 @@ export interface ITasks {
   start_date: Date;
   end_date: Date;
   current_state: string;
+  list_id: number;
 }

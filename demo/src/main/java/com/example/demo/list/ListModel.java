@@ -91,6 +91,7 @@ public class ListModel implements Serializable {
     }
 
     public ListModel(ListModel list) {
+
         this.name = list.name;
         this.creating_date = list.creating_date;
         this.last_update = list.last_update;

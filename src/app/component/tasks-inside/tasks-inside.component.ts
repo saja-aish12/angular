@@ -30,8 +30,9 @@ export class TasksInsideComponent implements OnInit {
      }
     });
   }
-  delete(deleteob: ITasks) {
-    this._listService.deleteTask(deleteob,this.listID);
+  delete(deleteTask: ITasks) {
+    console.log(deleteTask);
+    this._listService.deleteTask(deleteTask);
     this._listService.getTask(this.listID).subscribe((data : ITasks[])=>{this.task=data});
     
   }

@@ -34,19 +34,21 @@ export class ListService {
   }
 
   deleteList(list: IList) {
+    
     this._LocalStoreService.deleteLists(list).subscribe((data) =>{
       
     });
   }
 
   renameList(list: IList, newName: string) {
+    console.log(list);
     let updateList = {
       id: list.id,
       name: newName,
       creating_date: list.creating_date,
       last_update: new Date(),
       tasks:list.tasks,
-    };
+    };console.log(updateList);
     this._LocalStoreService.updateList(updateList).subscribe((data) =>{
       
     });
@@ -75,8 +77,8 @@ export class ListService {
     });
   }
 
-  deleteTask(task: ITasks ,get_list_id: number) {
-    this._LocalStoreService.deleteTasks(task,get_list_id).subscribe((data) =>{
+  deleteTask(task: ITasks ) {
+    this._LocalStoreService.deleteTasks(task).subscribe((data) =>{
       
     });
   }

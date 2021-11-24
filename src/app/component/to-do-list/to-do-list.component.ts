@@ -39,9 +39,9 @@ public closeResult:string="";
     this.router.navigate(['list_tasks',d.id]);
     //this.router.navigate([d.id], { relativeTo: this.r2 });
   }
-  rename(list: IList ,newName:string) {
-    
-    this._listService.renameList(list ,newName);
+  rename(listUpdate: IList ,newName:string) {
+   
+    this._listService.renameList(listUpdate ,newName);
     this._listService.getList().subscribe((data : IList[])=>{this.list=data});
    
   //  this.list = this._listService.getList();
