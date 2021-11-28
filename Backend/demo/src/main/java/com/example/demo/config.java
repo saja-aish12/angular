@@ -1,8 +1,8 @@
 package com.example.demo;
 
 import com.example.demo.list.ListModel;
-import com.example.demo.list.listRepository;
-import com.example.demo.task.taskRepository;
+import com.example.demo.list.ListRepository;
+import com.example.demo.task.TaskRepository;
 import com.example.demo.task.TaskModel;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -16,10 +16,10 @@ import java.util.List;
 public class config {
 
     @Bean
-    CommandLineRunner commandLineRunner(listRepository listRepository ,
-                                        taskRepository taskRepository){
+    CommandLineRunner commandLineRunner(ListRepository listRepository ,
+                                        TaskRepository taskRepository){
         return args->{
-            ListModel list1 = new ListModel(
+         /*   ListModel list1 = new ListModel(
                     1,
                     "List1",
                     LocalDate.of(2020, Month.JANUARY,2),
@@ -65,6 +65,6 @@ public class config {
                             , list1));
 
 
-        };
+     */   };
     }
 }

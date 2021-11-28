@@ -68,8 +68,8 @@ export class taskmodalComponent implements OnInit {
         description,
         start_date._inputValue,
         end_date._inputValue
-      );
-      this.task.ngOnInit();
+      ).subscribe((data : ITasks[])=>{this.task.task=data; this.task.ngOnInit();});
+
     }
   }
 
@@ -87,7 +87,7 @@ export class taskmodalComponent implements OnInit {
       end_date._inputValue || this.idT.end_date,
       this.idT.current_state,
       this.task.listID
-    );
-    this.task.ngOnInit();
+    ).subscribe((data : ITasks[])=>{this.task.task=data; this.task.ngOnInit();});
+   
   }
 }

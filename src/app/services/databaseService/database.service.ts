@@ -37,6 +37,6 @@ export class DatabaseService {
     return this.http.delete(`${this.taskUrl}/delete/${task.id}`);
   }
   updateTask(task: ITasks, listId: number): Observable<any> {
-    return this.http.put(`${this.taskUrl}/update/${task.id}`, task);
+    return this.http.put<ITasks>(`${this.taskUrl}/update/${task.id}`, task);
   }
 }

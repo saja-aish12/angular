@@ -10,10 +10,10 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping (path="api/v1/task")
-public class taskController {
-    private  final taskService taskService;
+public class TaskController {
+    private  final TaskService taskService;
     @Autowired
-    public taskController( taskService taskService) {
+    public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
 

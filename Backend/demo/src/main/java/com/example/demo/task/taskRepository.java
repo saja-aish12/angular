@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface taskRepository extends JpaRepository<TaskModel,Integer> {
+public interface TaskRepository extends JpaRepository<TaskModel,Integer> {
     public List<TaskModel>findByListId(int listId);
 }

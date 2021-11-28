@@ -32,30 +32,25 @@ export class TasksInsideComponent implements OnInit {
   }
   delete(deleteTask: ITasks) {
     console.log(deleteTask);
-    this._listService.deleteTask(deleteTask);
+    this._listService.deleteTask(deleteTask).subscribe((data : ITasks[])=>{this.task=data});
     this._listService.getTask(this.listID).subscribe((data : ITasks[])=>{this.task=data});
     
   }
-  addNewTask(itemname: string) {
-    if (itemname.length > 0 && itemname.trim() != '') {
-     // this._listService.addTask(this.listID, itemname);
-    //  this.task = this._listService.getTask(this.listID);
-    }
-  }
+ 
   back() {
     let selectedid = this.listID ;
     this.r2.navigate(['/list',{id:selectedid}]);
-   // this.r2.navigate(['../', { id: selectedid }], { relativeTo: this.router });
   }
 
   getDate():any{
    let dat=new Date();
-    //console.log("s:"+d+ "new:"+ dat.toISOString().substring(0,10) );
 return dat.toISOString().substring(0,10);
   }
-  changeState(taskstate:ITasks){
+  changeState(taskstate:ITasks):any{
    let newState=taskstate.current_state==="NOT Start"?"in Progress":"Done";
-    this._listService.updateTask( taskstate,taskstate.name,taskstate.description,taskstate.start_date,taskstate.end_date,newState,taskstate.list_id);
-    this.ngOnInit();
+    this._listService.updateTask( taskstate,taskstate.name,taskstate.description,taskstate.start_date,taskstate.end_date,newState,taskstate.list_id)
+    .subscribe((data : ITasks[])=>{this.task=data;
+      this.ngOnInit();});
+    
   }
 }

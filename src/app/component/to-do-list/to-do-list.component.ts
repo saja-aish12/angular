@@ -47,8 +47,8 @@ public closeResult:string="";
   //  this.list = this._listService.getList();
   }
   delete(list: IList) {
-    this._listService.deleteList(list);
-    this._listService.getList().subscribe((data : IList[])=>{this.list=data});
+    this._listService.deleteList(list).subscribe((data : IList[])=>{this.list=data;
+    this._listService.getList().subscribe((data : IList[])=>{this.list=data});});
    
    // this.list = this._listService.getList();
   }

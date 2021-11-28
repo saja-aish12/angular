@@ -1,21 +1,20 @@
 package com.example.demo.task;
 
 import com.example.demo.list.ListModel;
-import com.example.demo.list.listRepository;
+import com.example.demo.list.ListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 @Service
-public class taskService {
+public class TaskService {
 
-    private final com.example.demo.list.listRepository listRepository;
+    private final ListRepository listRepository;
 
-    private final com.example.demo.task.taskRepository taskRepository;
+    private final TaskRepository taskRepository;
     @Autowired
-    public taskService(com.example.demo.task.taskRepository taskRepository
-    ,com.example.demo.list.listRepository listRepository) {
+    public TaskService(TaskRepository taskRepository
+    , ListRepository listRepository) {
         this.taskRepository = taskRepository;
         this.listRepository = listRepository;
     }

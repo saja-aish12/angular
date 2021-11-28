@@ -34,11 +34,9 @@ export class ListService {
     });
   }
 
-  deleteList(list: IList) {
+  deleteList(list: IList): Observable<any> {
     
-    this._DataBaseService.deleteLists(list).subscribe((data) =>{
-      
-    });
+   return this._DataBaseService.deleteLists(list);
   }
 
   renameList(list: IList, newName: string) {
@@ -60,7 +58,8 @@ export class ListService {
   //  return this._LocalStoreService.getTasks(listId);
   return this._DataBaseService.getTasks(listId);  
 }
-  addTask(get_list_id: number, itemname: string,description:string ,start_date:Date,end_date:Date) {
+  addTask(get_list_id: number, itemname: string,description:string ,start_date:Date,end_date:Date) 
+  : Observable<any>{
     let newTaskObject = {
       list_id: get_list_id,
       id:100,
@@ -73,17 +72,14 @@ export class ListService {
       current_state: 'NOT Start',
     };
 
-    this._DataBaseService.addTasks(newTaskObject ,get_list_id).subscribe((data) =>{
-      
-    });
+  return  this._DataBaseService.addTasks(newTaskObject ,get_list_id)
   }
 
-  deleteTask(task: ITasks ) {
-    this._DataBaseService.deleteTasks(task).subscribe((data) =>{
-      
-    });
+  deleteTask(task: ITasks ): Observable<any>  {
+    return  this._DataBaseService.deleteTasks(task);
   }
-  updateTask(task: ITasks, newName: string,newDiscription: string ,startDate:Date,endDate:Date,state:string,get_list_id: number) {
+  updateTask(task: ITasks, newName: string,newDiscription: string ,startDate:Date,endDate:Date,state:string,get_list_id: number)
+  :Observable<any> {
     let updateTaskName = {
       list_id: task.list_id,
       id: task.id,
@@ -95,9 +91,7 @@ export class ListService {
       end_date: endDate,
       current_state: state,
     };
-    this._DataBaseService.updateTask(updateTaskName,get_list_id).subscribe((data) =>{
-      
-    });
+    return this._DataBaseService.updateTask(updateTaskName,get_list_id);
   }
 
 

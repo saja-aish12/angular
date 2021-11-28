@@ -8,9 +8,9 @@ import java.util.List;
 @Service
 public class ListService {
     @Autowired
-    private final listRepository listRepository;
+    private final ListRepository listRepository;
  @Autowired
-    public ListService(com.example.demo.list.listRepository listRepository) {
+    public ListService(ListRepository listRepository) {
         this.listRepository = listRepository;
     }
 
@@ -22,13 +22,13 @@ public class ListService {
     }
 
     public void addNewList(ListModel list) {
+      ListModel newList  = new ListModel(list);
 
-        listRepository.save(list);
+        listRepository.save(newList);
 
-     System.out.println(list);
+     System.out.println(newList);
     }
     public void updateList(ListModel list) {
-        ListModel newList  = new ListModel(list);
 
         listRepository.save(list);
 
